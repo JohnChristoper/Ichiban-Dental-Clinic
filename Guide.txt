@@ -1,0 +1,5 @@
+Naming Conventions:
+
+File Name = Pascal Case
+Class Name = kebab-case
+Variables = Camel Case
