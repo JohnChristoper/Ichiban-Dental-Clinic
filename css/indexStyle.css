@@ -1,0 +1,49 @@
+:root {
+    --prussian-blue: #003852;
+    --venice-blue: #00628A;
+    --bondi-blue: #008CB6;
+    --artyclick-blue: #00B8E3;
+    --turquoise-blue: #6CE0FE;
+}
+
+body {
+    margin: 0;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.background-container {
+    position: relative;
+    z-index: -1;
+    height: 157vh;
+}
+
+.hero-background {
+    position: absolute;
+    max-width: 100%;
+    z-index: 0;
+}
+
+.gradient-overlay {
+    position: absolute;
+    max-width: 100%;
+    z-index: 1;
+}
+
+.curved-border {
+    position: absolute;
+    max-width: 100%;
+    z-index: 2;
+    bottom: 0;
+}
+
+.hero-content {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 10%;
+    color: var(--venice-blue);
+}

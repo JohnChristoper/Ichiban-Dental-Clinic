@@ -1,0 +1,72 @@
+:root {
+    --prussian-blue: #003852;
+    --venice-blue: #00628A;
+    --bondi-blue: #008CB6;
+    --artyclick-blue: #00B8E3;
+    --turquoise-blue: #6CE0FE;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: inherit;
+}
+
+.blue-logo {
+    margin: 0 10px 0 40px;
+    height: 60%;
+}
+
+.clinic-name {
+    color: var(--venice-blue);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+}
+
+nav a {
+    color: var(--venice-blue);
+    margin: 0 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+.book-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    height: 45px;
+    width: 180px;
+    color: white;
+    background-color: var(--venice-blue);
+}
+
+.profile {
+    height: 35px;
+    margin-right: 20px;
+}
