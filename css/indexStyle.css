@@ -449,12 +449,90 @@ body {
 
 
 
-
 .find-us-container {
     width: 90%;
-    margin: 0% auto;
+    margin: 100px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
+
+.find-us-grid {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.find-us-card {
+    width: 48%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    border: lightslategrey 1px solid;
+    border-radius: 15px;
+}
+
+.find-us-card-icon-container {
+    margin: 0;
+    padding: 0;
+}
+
+.find-us-card-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.find-us-card-container {
+    width: 90%;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 0;
+    border-bottom: lightslategrey 1px solid;
+}
+
+.clinic-hours {
+    display: flex;
+    gap: 5px;
+}
+
+.find-us-card-btn {
+    width: 90%;
+    border: lightgray 1px solid;
+    border-radius: 5px;
+    background-color: #00628A;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px auto;
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.find-us-card-btn img{
+    width: 20px;
+}
+
+.find-us-map {
+    width: 45%;
+}
+
+.find-us-map iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+
+
+
+ 
