@@ -218,7 +218,7 @@ body {
 
 .before-after-section {
     width: 100%;
-    background-color: var(--bondi-blue);
+    background-color: var(--prussian-blue);
     margin: 50px 0;
     padding: 50px 0;
 }
@@ -262,6 +262,7 @@ body {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
+    padding: 2px;
 }
 
 .before-after img {
@@ -272,6 +273,8 @@ body {
 
 .before-after-container-inner {
     display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 .before {
@@ -286,5 +289,172 @@ body {
 
 .before p {
     font-size: 0.9rem;
-    line-height: 0;
+}
+
+.after {
+    width: 49%;
+    margin: 0;
+    padding: 0 5px;
+    background-color: var(--bondi-blue);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+
+.after p {
+    font-size: 0.9rem;
+}
+
+.before-after-service {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #00628A;
+    margin-top: 10px;
+}
+
+.schedule {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.view-more {
+    background-color: #008CB6;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+
+
+
+
+.call-section {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    background-image: url('../assets/images/HeroBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.call-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, 
+        rgba(0, 56, 82, 0.85) 0%, 
+        rgba(0, 56, 82, 0.65) 50%, 
+        rgba(0, 56, 82, 0.45) 100%);
+    z-index: 1;
+}
+
+.call-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.call-left {
+    flex: 1;
+    color: white;
+}
+
+.call-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.call-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 500px;
+}
+
+.call-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.call-right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.services-btn,
+.appointment-btn {
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.services-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.services-btn:hover {
+    background-color: white;
+    color: #003852;
+}
+
+.appointment-btn {
+    background-color: #00A9E0; 
+    color: white;
+    border: 2px solid #00A9E0;
+}
+
+.appointment-btn:hover {
+    background-color: #0090c0;
+    border-color: #0090c0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 169, 224, 0.3);
+}
+
+
+
+
+
+
+
+
+
+.find-us-container {
+    width: 90%;
+    margin: 0% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
