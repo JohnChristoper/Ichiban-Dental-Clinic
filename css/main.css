@@ -10,6 +10,17 @@ body {
     margin: 0;
 }
 
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -70,4 +81,235 @@ nav a {
 .profile {
     height: 35px;
     margin-right: 20px;
+}
+
+/* Global resets for the footer area */
+footer, footer * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Fallback font close to image typography */
+    color: #ffffff;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    background-color: var(--prussian-blue);
+    padding: 50px 60px 140px 60px; /* Enhanced bottom padding to make room for base-5 */
+    gap: 20px;
+}
+
+/* Common Header Styles for Columns 2, 3, 4 */
+footer h3 {
+    color: var(--turquoise-blue);
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Base structural sizing based on your layout */
+.base-1 {
+    flex: 3.5;
+    display: flex;
+    flex-direction: column;
+}
+
+.base-2 {
+    flex: 1.6;
+}
+
+.base-3 {
+    flex: 2.2;
+}
+
+.base-4 {
+    flex: 2.7;
+}
+
+/* Base 5 handles absolute placement at bottom left */
+.base-5 {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+}
+
+.base-5 p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- BRANDING & SOCIALS (Base 1) --- */
+.foot-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.foot-logo img {
+    height: 55px;
+    width: auto;
+}
+
+.foot-logo p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.tagline {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--venice-blue);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.social-btn i {
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.social-btn:hover {
+    background-color: var(--bondi-blue);
+}
+
+/* --- LISTS (Base 2 & Base 3) --- */
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 18px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #ffffff;
+    transition: color 0.2s ease;
+}
+
+footer ul li a:hover {
+    color: var(--turquoise-blue);
+}
+
+/* Dot bullets specifically for Quick Links */
+.base-2 ul li {
+    position: relative;
+    padding-left: 18px;
+}
+
+.base-2 ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #ffffff;
+    font-size: 1.2rem;
+    top: -2px;
+}
+
+/* --- CONTACT INFO (Base 4) --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--venice-blue);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.contact-text .label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--artyclick-blue);
+    letter-spacing: 0.5px;
+}
+
+.contact-text p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+.fb-container {
+    border-radius: 12px;
+    display: block;
+    margin: 0 0 0 3px;
+    width: 35px;
+    height: auto;
+}
+
+.fb-path {
+    fill: none;
+    stroke: #4FC3F7;
+    stroke-width: 6;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.ig-container {
+    display: block;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.ig-shape {
+    fill: none;
+    stroke: #4FC3F7;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.x-icon {
+    width: 22px;
+    margin-top: 4px;
 }
