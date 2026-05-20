@@ -25,7 +25,8 @@
 
 .hero-section {
     width: 90%;
-    margin: 50px auto;
+    margin: 0px 50px 20px 50px;
+    padding: 9rem 0 0 0;
     display: flex;
     justify-content: space-between;
 }
