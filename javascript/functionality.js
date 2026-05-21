@@ -1,4 +1,3 @@
-
 document.querySelectorAll('.comparison-card').forEach(card => {
     const slider = card.querySelector('.slider-control');
     const afterImg = card.querySelector('.after-img');
@@ -32,3 +31,45 @@ document.querySelectorAll('.comparison-card').forEach(card => {
         }
     });
 });
+
+const carousel = document.getElementById('expertsCarousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+const cardStepWidth = 300; // Layout scroll step distance
+
+// Function to calculate button visibilities dynamically
+function updateButtonVisibility() {
+    const scrollLeft = carousel.scrollLeft;
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+
+    // 1. Manage Left Button (Show only if user scrolled right and cards are hidden under left block)
+    if (scrollLeft <= 5) {
+        prevBtn.classList.add('btn-hidden');
+    } else {
+        prevBtn.classList.remove('btn-hidden');
+    }
+
+    // 2. Manage Right Button (Hide if reached the absolute end of the deck)
+    if (scrollLeft >= maxScrollLeft - 5) {
+        nextBtn.classList.add('btn-hidden');
+    } else {
+        nextBtn.classList.remove('btn-hidden');
+    }
+}
+
+// Next Action Click Click
+nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: cardStepWidth, behavior: 'smooth' });
+});
+
+// Previous Action Click Click
+prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -cardStepWidth, behavior: 'smooth' });
+});
+
+// Listen to scroll modifications (handles both button clicks and manual touch swipe/drags)
+carousel.addEventListener('scroll', updateButtonVisibility);
+
+// Initial check on page load
+window.addEventListener('load', updateButtonVisibility);
