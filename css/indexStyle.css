@@ -1161,87 +1161,217 @@ body {
     }
 }
 
+/*================== Find Us Section ==================*/
+.find-us-section {
+    width: 100%;
+    background-color: #ffffff; /* Explicit white background requested */
+    padding: 80px 0;
+}
 
+.find-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--venice-blue);
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
 
-/*================== Find Us Section ================*/
+.find-label-dot {
+    width: 15px;
+    height: 15px;
+    background: var(--venice-blue);
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
 .find-us-container {
     width: 90%;
-    margin: 100px auto;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Center aligned header texts */
+.find-us-header {
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
 }
 
+.find-us-title {
+    font-size: 2.8rem;
+    color: var(--bondi-blue);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    margin: 12px 0 8px 0;
+}
+
+.find-us-subtitle {
+    font-size: 1.1rem;
+    color: #555555;
+    font-family: 'Inter', sans-serif;
+    max-width: 650px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Clear, borderless two-column split structure */
 .find-us-grid {
     width: 100%;
-    margin: 0 auto;
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
 }
 
-.find-us-card {
-    width: 48%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 auto;
-    border: lightslategrey 1px solid;
-    border-radius: 15px;
-}
-
-.find-us-card-icon-container {
-    margin: 0;
-    padding: 0;
-}
-
-.find-us-card-icon {
-    width: 25px;
-    height: 25px;
-}
-
-.find-us-card-container {
-    width: 90%;
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    margin: 0 auto;
-    padding: 10px 0;
-    border-bottom: lightslategrey 1px solid;
-}
-
-.clinic-hours {
-    display: flex;
-    gap: 5px;
-}
-
-.find-us-card-btn {
-    width: 90%;
-    border: lightgray 1px solid;
-    border-radius: 5px;
-    background-color: #00628A;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 15px auto;
-    padding: 0 10px;
-    text-decoration: none;
-    color: white;
-}
-
-.find-us-card-btn img{
-    width: 20px;
-}
-
-.find-us-map {
+/* Left content adjustments */
+.find-us-info-panel {
     width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
-.find-us-map iframe {
+.info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Label & Icon Header lines */
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-icon {
+    position: relative;
+    font-size: 1.2rem;
+    color: var(--bondi-blue);
+}
+
+.info-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.info-header h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--bondi-blue);
+    margin: 0;
+}
+
+.info-detail {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #222222;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- Clinic Hours Grid Layout Alignment --- */
+.clinic-hours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 380px;
+}
+
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    color: #222222;
+}
+
+.hours-row .day {
+    font-weight: 500;
+}
+
+.hours-row .time {
+    color: #444444;
+}
+
+/* Accent highlight color for closed status rule matched to mockup */
+.highlight-closed {
+    color: #c92a2a;
+}
+.highlight-closed .time {
+    color: #c92a2a;
+    font-weight: 600;
+}
+
+/* --- Get Directions Solid Button Layout --- */
+.find-us-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--venice-blue);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 36px;
+    border-radius: 6px;
+    margin-top: 10px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 98, 138, 0.15);
+}
+
+.find-us-btn:hover {
+    background-color: var(--prussian-blue);
+    transform: translateY(-1px);
+}
+
+.find-us-btn .btn-icon {
+    font-size: 1rem;
+    filter: brightness(0) invert(1); /* Forces icon white inside button background */
+}
+
+/* --- Right Side Embedded Map Window Container --- */
+.find-us-map-wrapper {
+    width: 50%;
+    height: 460px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.find-us-map-wrapper iframe {
     width: 100%;
-    height: 500px;
+    height: 100%;
     border: none;
-    border-radius: 10px;
+    display: block;
+}
+
+/* --- Fully Responsive Design System Back-Downs --- */
+@media (max-width: 992px) {
+    .find-us-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .find-us-info-panel, 
+    .find-us-map-wrapper {
+        width: 100%;
+    }
+    .find-us-map-wrapper {
+        height: 350px;
+    }
+    .find-us-title {
+        font-size: 2.2rem;
+    }
 }
