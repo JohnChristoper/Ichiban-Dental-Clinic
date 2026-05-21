@@ -6,6 +6,7 @@
         <title>Ichiban Dental Clinic</title>
 
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/contactStyle.css">
     </head>
     <body>
         <header>
@@ -22,6 +23,134 @@
             </nav>
             <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile">
         </header>
+
+        <main class="contact-page">
+        
+            <head class="contact-header">
+                <h1 class="contact-main-title reveal">Get in <span>Touch</span> With US</h1>
+                <p class="contact-subtitle reveal">
+                    If you have any questions, please feel free to get in touch with us via phone, text, email, the form below, or even on social media.
+                </p>
+            </head>
+
+            <div class="contact-split-grid">
+                
+                <section class="contact-form-panel">
+                    <h2 class="section-heading reveal">Send a Message</h2>
+                    <form class="contact-form reveal" action="#" method="POST" autocomplete="on">
+                        
+                        <div class="form-row-2col">
+                            <div class="form-group">
+                                <label for="clientName">Name</label>
+                                <input type="text" id="clientName" name="name" class="form-input" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientPhone">Phone Number</label>
+                                <input type="tel" id="clientPhone" name="phone" class="form-input" placeholder="Your Number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientEmail">Email</label>
+                            <input type="email" id="clientEmail" name="email" class="form-input" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientMessage">Message</label>
+                            <textarea id="clientMessage" name="message" class="form-input" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </section>
+
+                <aside class="contact-info-panel reveal">
+                    
+                    <div class="info-cards-stack">
+                        <h2 class="section-heading">Contact Information</h2>
+                        
+                        <div class="info-row-item">
+                            <div class="info-icon-box">
+                                <img src="assets/images/PhoneDarkIcon.png" alt="">
+                            </div>
+                            <div class="info-text-box">
+                                <label>Phone</label>
+                                <p>+ 0912 345 6789</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row-item">
+                            <div class="info-icon-box">
+                                <img src="assets/images/EmailDarkIcon.png" alt="">
+                            </div>
+                            <div class="info-text-box">
+                                <label>Email</label>
+                                <p>ichibandental@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row-item">
+                            <div class="info-icon-box">
+                                <img src="assets/images/PinDark.png" alt="">
+                            </div>
+                            <div class="info-text-box">
+                                <label>Address</label>
+                                <p>123 Health Street, Barangay San Isidro, Quezon, Bukidnon, 8715</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row-item" style="margin-top: 10px;">
+                            <div class="info-text-box" style="gap: 12px;">
+                                <span class="social-label">Social Links -</span>
+                                <div class="social-links-row">
+                                    <a href="#" class="social-icon-btn" aria-label="Facebook Link">
+                                        <img src="assets/images/FBIconDark.png" alt="Facebook">
+                                    <a href="#" class="social-icon-btn" aria-label="Instagram Link">
+                                        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m4.4 3a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                                    </a>
+                                    <a href="#" class="social-icon-btn" aria-label="X Twitter Link">
+                                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clinic-hours-wrapper">
+                        <h2 class="section-heading" style="margin-bottom: 20px;">Clinic Hours</h2>
+                        <div class="hours-flex-container">
+                            
+                            <div class="hours-column">
+                                <span class="hours-col-label">Mon - Fri</span>
+                                <p class="hours-col-value">8am - 6pm</p>
+                            </div>
+
+                            <div class="hours-column">
+                                <span class="hours-col-label">Saturday</span>
+                                <p class="hours-col-value">9am - 5pm</p>
+                            </div>
+
+                            <div class="hours-column">
+                                <span class="hours-col-label">Sunday</span>
+                                <p class="hours-col-value closed">Closed</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+
+            <div class="contact-map-frame-box reveal">
+                <iframe src="https://maps.google.com/maps?q=Maysan%20Elementary%20School%20Valenzuela&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </main>
 
         <footer>
             <div class="base-1">
