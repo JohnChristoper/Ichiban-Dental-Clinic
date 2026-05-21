@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('/assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+    src: url('/assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
 }
 
 body {
@@ -350,7 +350,229 @@ body {
 }
 
 
-/*======= Before & After Section =======*/
+/*============== Testimonials Section ================*/
+.testimonials-section {
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    padding: 60px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Header Styles --- */
+.header-top-line {
+    font-size: 11px;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: black;
+    font-weight: 400;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header-top-line::before,
+.header-top-line::after {
+    content: "";
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background-color: black;
+    vertical-align: middle;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 500;
+    color: #111111;
+    margin-bottom: 12px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 40px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Gradient Masks (Top, Bottom, Left, Right) --- */
+.testimonials-mask-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: #ffffff;
+}
+
+/* Replicating full 4-way fade transparencies overlay */
+.testimonials-mask-wrapper::before,
+.testimonials-mask-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Combined linear-gradient layout masks */
+.testimonials-mask-wrapper::before {
+    background: 
+        linear-gradient(
+            to right, 
+            rgba(255,255,255,1) 0%, 
+            rgba(255,255,255,0) 15%, 
+            rgba(255,255,255,0) 85%, 
+            rgba(255,255,255,1) 100%),
+        linear-gradient(
+            to bottom, 
+            rgba(255,255,255,1) 0%, 
+            rgba(255,255,255,0) 10%);
+}
+
+.testimonials-mask-wrapper::after {
+    background: linear-gradient(
+        to top, 
+        rgba(255,255,255,1) 0%, 
+        rgba(255,255,255,0) 10%
+    );
+}
+
+/* --- Infinite Track Animation System --- */
+.marquee-track {
+    display: flex;
+    -webkit-user-select: none; /* Safari/iOS */
+    user-select: none;
+    width: max-content;
+    gap: 25px;
+}
+
+.marquee-group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 25px;
+    width: max-content;
+}
+
+/* Row Direction Speed Configuration */
+.track-left .marquee-group {
+    animation: scroll-left 45s linear infinite;
+}
+
+.track-right .marquee-group {
+    animation: scroll-right 45s linear infinite;
+}
+
+/* CSS Keyframe Instructions */
+@keyframes scroll-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(calc(-100% - 25px)); }
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(calc(-100% - 25px)); }
+    100% { transform: translateX(0%); }
+}
+
+/* Pause track motion on user hover */
+.marquee-track:hover .marquee-group {
+    animation-play-state: paused;
+}
+
+/* --- Card Object Blocks --- */
+.testimonial-card {
+    background: #ffffff;
+    border: 1px solid #e1f3f9;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 174, 239, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    min-height: 240px;
+}
+
+.star-rating {
+    color: #00aeef;
+    font-size: 16px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.testimonial-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #444444;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+}
+
+.testimonial-text::before {
+    content: "“ ";
+    color: #00aeef;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* --- User Profile Context --- */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #f2f8fa;
+    padding-top: 14px;
+}
+
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    background-color: #00aeef;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333333;
+    font-family: 'Inter', sans-serif;
+}
+
+.profile-meta {
+    font-size: 10px;
+    color: #999999;
+    margin-top: 2px;
+    font-family: 'Inter', sans-serif;
+}
+
+/*=========================== Before & After Section ============================*/
 .before-after-section {
     width: 100%;
     background-color: var(--prussian-blue);
@@ -579,11 +801,7 @@ body {
 
 
 
-
-
-
-
-
+/*================== Find Us Section ================*/
 .find-us-container {
     width: 90%;
     margin: 100px auto;
