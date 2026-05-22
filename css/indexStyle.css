@@ -8,7 +8,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('/assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('/assets/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
@@ -572,7 +572,7 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/*======= Before & After Section =======*/
+/*========================== Before & After Section ========================*/
 .before-after-section {
     width: 100%;
     background-color: var(--prussian-blue);
@@ -650,34 +650,29 @@ body {
 .status-label {
     position: absolute;
     bottom: 0;
-    padding: 6px 12px;
+    width: 50%; /* Each badge occupies exactly half the card's width */
+    padding: 8px 12px;
     font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: 0.05em;
     z-index: 3;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Helper utility rule to hide labels elegantly */
-.label-hidden {
-    opacity: 0;
-    visibility: hidden;
+    pointer-events: none; /* Prevents text highlights from blocking drag tracking */
+    box-sizing: border-box;
 }
 
 .before-tag {
     left: 0;
+    text-align: left;
     background-color: var(--prussian-blue);
 }
 
 .after-tag {
     right: 0;
+    text-align: left; /* Kept left-aligned to replicate your figma blueprint */
     background-color: var(--bondi-blue);
 }
-
 /* Custom Interactive Central Split Line Handle */
 .slider-handle {
     position: absolute;
