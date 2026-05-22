@@ -25,9 +25,8 @@
         </header>
 
         <main class="appointment-page-container">
-        
             <section class="appointment-intro-group">
-                <h1 class="appointment-main-title">Get an Appointment</h1>
+                <h1 class="appointment-main-title">Get an <span class="title-emphasis">Appointment</span></h1>
                 <p class="appointment-subtitle">
                     Discover modern dental care delivered with comfort in mind. At Ichiban Dental, we're here to meet all your oral health needs. Please complete the appointment form below, and a representative will contact you shortly.
                 </p>
@@ -37,20 +36,16 @@
                 
                 <div class="patient-type-grid">
                     
-                    <div class="patient-type-card first-visit-card active">
+                    <div class="patient-type-card first-visit-card" id="newPatientCard">
                         <span class="patient-badge first-visit-badge">FIRST VISIT</span>
-                        <h2 class="patient-card-title">New Patient</h2>
-                        <p class="patient-card-description">
-                            Book a consultation - our dentist will examine you and build your treatment plan.
-                        </p>
+                        <h3>New Patient</h3>
+                        <p>Book a consultation - our dentist will examine you and build your treatment plan.</p>
                     </div>
 
-                    <div class="patient-type-card returning-visit-card">
+                    <div class="patient-type-card returning-visit-card" id="returningPatientCard">
                         <span class="patient-badge returning-badge">RETURNING</span>
-                        <h2 class="patient-card-title">Returning Patient</h2>
-                        <p class="patient-card-description">
-                            Already been consulted? Book your scheduled service directly.
-                        </p>
+                        <h3>Returning Patient</h3>
+                        <p>Already been consulted? Book your scheduled service directly.</p>
                     </div>
                     
                 </div>
@@ -59,9 +54,8 @@
                     <button type="button" class="patient-continue-btn">Continue</button>
                 </div>
 
-                <div class="middle-form-content-placeholder">
-                    </div>
-
+                <div class="middle-form-content-placeholder"></div>
+                
             </div>
 
             <div class="appointment-contact-container">
@@ -313,5 +307,6 @@
 
         <script src="javascript/animation.js"></script>
         <script src="javascript/functionality.js"></script>
+        <script src="javascript/bookAppointmentFunction.js"></script>
     </body>
 </html>

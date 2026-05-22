@@ -16,8 +16,6 @@
     src: url('/assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
 }
 
-/* --- APPOINTMENT SYSTEM THEME IMPLEMENTATION --- */
-
 body {
     background-color: #ffffff;
     margin: 0;
@@ -26,7 +24,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Page Layout Box */
 .appointment-page-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -34,63 +31,78 @@ body {
     box-sizing: border-box;
 }
 
-/* Intro Text Typography Group */
 .appointment-intro-group {
     margin-bottom: 40px;
     text-align: left;
 }
 
 .appointment-main-title {
-    font-family: 'Playfair Display', sans-serif; /* Elegantly matches design text structure */
-    font-size: 52px;
-    font-weight: 500;
-    color: #0D6180; /* Core Venetian Blue Tone */
+    font-family: 'Inter', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--prussian-blue);
     margin: 0 0 16px 0;
     line-height: 1.1;
+}
+
+.title-emphasis {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--bondi-blue);
 }
 
 .appointment-subtitle {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.6;
-    color: #4A6066; /* Subdued content tracking line slate */
+    color: #4A6066;
     max-width: 760px;
     margin: 0;
 }
 
-/* Main Outer Card Frame Component Box */
 .appointment-form-card-frame {
     background: #ffffff;
-    border: 1.5px solid #E3F2F7; /* Soft bounding box highlight rule */
+    border: 1.5px solid var(--turquoise-blue);
     border-radius: 12px;
     padding: 40px;
     margin-bottom: 60px;
     box-sizing: border-box;
 }
 
-/* Patient Classification Select Grid */
 .patient-type-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Exact two-column layout */
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-bottom: 24px;
 }
 
-/* Base Card Options Styles */
+/* Base Patient Card Properties */
 .patient-type-card {
-    border: 1.5px solid #E3F2F7;
     border-radius: 8px;
     padding: 28px 24px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     cursor: pointer;
-    background-color: #ffffff;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
     box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease, border-width 0.1s ease;
 }
 
-/* Badge Layout Text Configurations */
+.patient-type-card p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #556E75;
+    line-height: 1.5;
+}
+
+.patient-type-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D6180;
+}
+
 .patient-badge {
     font-size: 10px;
     font-weight: 700;
@@ -98,45 +110,42 @@ body {
     padding: 4px 10px;
     border-radius: 30px;
     margin-bottom: 16px;
+    display: inline-block;
 }
 
-/* Card Option State - First Visit (Green Theme Variant) */
+/* New Patient Card States */
+.first-visit-card {
+    background-color: rgba(161, 255, 221, 0.25);
+    border: 4px solid rgba(0, 98, 138, 0.10);
+}
+
 .first-visit-badge {
-    background-color: #E2FAF4;
-    color: #108569;
+    background-color: #A1FFDD;
+    color: var(--venice-blue);
 }
 
 .first-visit-card.active {
-    background-color: #F3FDFB;
-    border-color: #A9ECE0;
+    background-color: rgba(161, 255, 221, 0.25);
+    border-color: rgba(0, 98, 138, 1.0);
+    padding: 28px 24px; 
 }
 
-/* Card Option State - Returning (Blue Theme Variant) */
+/* Returning Patient Card States */
+.returning-visit-card {
+    background-color: rgba(108, 224, 254, 0.25);
+    border: 4px solid rgba(0, 98, 138, 0.10);
+}
 .returning-badge {
-    background-color: #E1F4FC;
-    color: #0D6180;
+    background-color: rgba(108, 224, 254, 0.60);
+    color: var(--venice-blue);
 }
 
 .returning-visit-card.active {
-    background-color: #F2FAFD;
-    border-color: #BBE5F4;
+    background-color: rgba(108, 224, 254, 0.25);
+    border-color: rgba(0, 98, 138, 1.0);
+    padding: 28px 24px; 
 }
 
-.patient-card-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0D6180;
-    margin: 0 0 10px 0;
-}
-
-.patient-card-description {
-    font-size: 13.5px;
-    color: #556E75;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* Bottom Flow Interaction Layout Line */
 .patient-flow-actions {
     display: flex;
     justify-content: flex-start;
@@ -159,16 +168,14 @@ body {
     background-color: #084359;
 }
 
-/* Reserved Form Layout Extension Point */
 .middle-form-content-placeholder {
     width: 100%;
     box-sizing: border-box;
 }
 
-/* --- BOTTOM INTEGRATED CONTACT SECTION CARD LOOKS --- */
+/* --- CONTACT INFORMATION BLOCK --- */
 .appointment-contact-container {
-    background-color: #ffffff; /* Clean white background inside the box frame */
-    border-radius: 0;
+    background-color: #ffffff;
     padding: 20px 0 0 0;
     box-sizing: border-box;
     width: 100%;
@@ -179,13 +186,12 @@ body {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.8px;
-    color: #085B7A; /* Deep slate blue header */
+    color: #085B7A;
     margin: 0 0 24px 0;
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(13, 97, 128, 0.1);
 }
 
-/* Switches layout into a clean vertical stack */
 .footer-info-column-layout {
     display: flex;
     flex-direction: column;
@@ -195,15 +201,14 @@ body {
 
 .footer-info-leaf {
     display: flex;
-    align-items: center; /* Vertically centered icons */
+    align-items: center;
     gap: 18px;
 }
 
-/* Light blue square background for icons */
 .footer-icon-square {
     width: 38px;
     height: 38px;
-    background-color: #E2F5FC; /* Accurate light sky tint */
+    background-color: #E2F5FC;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -221,7 +226,7 @@ body {
     display: block;
     font-size: 11px;
     font-weight: 700;
-    color: #0D6180; /* Bold accent color label */
+    color: #0D6180;
     margin-bottom: 3px;
     letter-spacing: 0.5px;
 }
@@ -234,7 +239,7 @@ body {
     line-height: 1.4;
 }
 
-/* Social Icon Row Divider and Panel */
+/* Social Icon Tray Container */
 .footer-social-cluster-line {
     display: flex;
     align-items: center;
@@ -254,43 +259,37 @@ body {
     gap: 10px;
 }
 
-/* Soft rectangular social links matching contact page styles */
-/* Soft rectangular social links matching contact page hover effects */
 .social-square-badge {
     width: 36px;
     height: 36px;
-    background-color: #E1F6FC; /* Exact Contact page subtle light sky background */
-    border-radius: 6px;        /* Consistent matching corner radius */
+    background-color: #E1F6FC;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth hover transition */
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-/* Internal SVG vector styling */
 .social-square-badge svg {
     width: 18px;
     height: 18px;
-    fill: var(--venice-blue); /* Sets color to matches your site's theme variable */
+    fill: var(--venice-blue);
 }
 
-/* Image fallback configuration (if using images instead of inline SVGs) */
 .social-square-badge img {
     width: 110%;
     height: 110%;
 }
 
-/* Hover dynamic behavior rule */
 .social-square-badge:hover {
-    background-color: var(--turquoise-blue); /* Swaps to active turquoise accent layout tone */
-    transform: translateY(-2px);           /* Clean, subtle upward shift motion */
+    background-color: var(--turquoise-blue);
+    transform: translateY(-2px);
 }
 
 /* --- RESPONSIVENESS OVERRIDES --- */
 @media(max-width: 768px) {
-    .patient-type-grid, 
-    .footer-info-row-layout {
+    .patient-type-grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
