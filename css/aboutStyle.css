@@ -91,3 +91,81 @@
     height: auto;
     border-radius: 10px;
 }
+
+
+
+
+
+
+
+.our-team {
+    width: 100%;
+    margin: 50px 0;
+}
+
+.team-title {
+    text-align: center;
+    font-size: 3.8rem;
+    color: var(--venice-blue);
+}
+
+.team-main {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dentist-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.dentist-card {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.dentist-image {
+    width: 48%;
+    height: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.dentist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 100px;
+    border-top-right-radius:100px;
+}
+
+.dentist-description {
+    width: 48%;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.dentist-description h1 {
+    font-size: 3rem;
+    color: var(--bondi-blue);
+    margin-bottom: 5px;
+}
+
+.dentist-description h5 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: var(--turquoise-blue);
+}
+
