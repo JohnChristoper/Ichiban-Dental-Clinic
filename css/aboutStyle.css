@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('/assets/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+    src: url('/assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
 }
 
 * {
@@ -107,6 +107,8 @@
     text-align: center;
     font-size: 3.8rem;
     color: var(--venice-blue);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
 }
 
 .team-main {
@@ -159,13 +161,46 @@
 
 .dentist-description h1 {
     font-size: 3rem;
-    color: var(--bondi-blue);
+    font-weight: 500;
+    color: #00628A;
     margin-bottom: 5px;
+    font-family: 'Quicksand', serif;
 }
 
 .dentist-description h5 {
     margin-bottom: 5px;
     font-size: 1.2rem;
-    color: var(--turquoise-blue);
+    font-weight: 400;
+    color: #00B8E3;
+    font-family: 'Inter', serif;
 }
 
+
+
+
+.our-clinic {
+    width: 100%;
+    margin: 50px 0;
+}
+
+.clinic-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.clinic-container p {
+    font-size: 3.8rem;
+    color: var(--venice-blue);
+    font-family: 'Playfair Display', serif;
+}
+
+.clinic-container img {
+    width: 900px;
+    height: 300px;
+    border-radius: 10px;
+    border: var(--bondi-blue) 1px solid;
+}
