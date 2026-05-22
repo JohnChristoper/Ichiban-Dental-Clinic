@@ -25,7 +25,8 @@
         </header>
 
         <main class="appointment-page-container">
-            <section class="appointment-intro-group reveal">
+        
+            <section class="appointment-intro-group">
                 <h1 class="appointment-main-title">Get an <span class="title-emphasis">Appointment</span></h1>
                 <p class="appointment-subtitle">
                     Discover modern dental care delivered with comfort in mind. At Ichiban Dental, we're here to meet all your oral health needs. Please complete the appointment form below, and a representative will contact you shortly.
@@ -33,9 +34,7 @@
             </section>
 
             <div class="appointment-form-card-frame">
-                
-                <div class="patient-type-grid reveal">
-                    
+                <div class="patient-type-grid">
                     <div class="patient-type-card first-visit-card" id="newPatientCard">
                         <span class="patient-badge first-visit-badge">FIRST VISIT</span>
                         <h3>New Patient</h3>
@@ -47,7 +46,6 @@
                         <h3>Returning Patient</h3>
                         <p>Already been consulted? Book your scheduled service directly.</p>
                     </div>
-                    
                 </div>
 
                 <div class="patient-flow-actions">
@@ -55,14 +53,11 @@
                 </div>
 
                 <div class="middle-form-content-placeholder"></div>
-                
             </div>
 
-            <div class="appointment-contact-container reveal">
+            <div class="appointment-contact-container">
                 <h2 class="footer-section-heading">CONTACT INFORMATION</h2>
-                
                 <div class="footer-info-column-layout">
-                    
                     <div class="footer-info-leaf">
                         <div class="footer-icon-square">
                             <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -92,7 +87,6 @@
                             <p>123 Health Street, Barangay San Isidro, Quezon, Bukidnon, 8715</p>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="footer-social-cluster-line">
