@@ -64,6 +64,16 @@
     border-radius: 5px;
 }
 
+.cta-primary:hover {
+    background-color: var(--bondi-blue);
+    transition: 0.3s ease-in-out;
+    color: white;
+}
+
+.cta-primary:hover .hero-btn-primary{
+    color: white;
+}
+
 .hero-btn-primary {
     color: var(--prussian-blue);
 }
@@ -77,6 +87,11 @@
 .hero-btn-secondary {
     color: var(--prussian-blue);
     text-decoration: underline;
+}
+
+.hero-btn-secondary:hover {
+    color: var(--turquoise-blue);
+    
 }
 
 .hero-img-container {
