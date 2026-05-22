@@ -21,8 +21,78 @@
                 <a href="contact.html">Contact</a>
                 <a class="book-btn" href="bookAppointment.html">Book Appointment</a>
             </nav>
-            <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile">
+            
+            <div class="profile-menu-container">
+                <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile" onclick="openFullscreenMenu()">
+            </div>
         </header>
+
+        <div class="fullscreen-menu-overlay" id="fullscreenMenu" onclick="closeFullscreenMenu()">
+            
+            <div class="overlay-panel-card" onclick="event.stopPropagation()">
+                
+                <div class="overlay-brand-header">
+                    <div class="overlay-logo-frame">
+                        <img src="assets/images/BlueLogo.png" alt="White Teeth Logo">
+                    </div>
+                    <div class="overlay-title-block">
+                        <h2>Ichiban</h2>
+                        <p>Dental Clinic</p>
+                    </div>
+                    <button class="close-panel-btn" onclick="closeFullscreenMenu()">&times;</button>
+                </div>
+                
+                <div class="overlay-profile-section">
+                    <div class="overlay-user-card">
+                        <div class="overlay-avatar-circle">
+                            <img src="assets/images/GuestProfile.svg" alt="User Profile Picture">
+                        </div>
+                        <div class="overlay-user-info">
+                            <h3>Juan dela Cruz</h3>
+                            <p>Signed in with Google</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav class="overlay-navigation-stack" aria-label="Full screen navigation">
+                    <a class="overlay-nav-link active" href="index.html">
+                        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        Home
+                    </a>
+                    <a class="overlay-nav-link" href="about.html">
+                        <svg viewBox="0 0 24 24"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-11h2V7h-2v2z"/></svg>
+                        About
+                    </a>
+                    <a class="overlay-nav-link" href="services.html">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                        Services
+                    </a>
+                    <a class="overlay-nav-link" href="contact.html">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Contact
+                    </a>
+                    
+                    <a class="overlay-book-cta" href="bookAppointment.html">
+                        <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                        Book Appointment
+                    </a>
+
+                    <hr class="overlay-menu-divider">
+
+                    <a class="overlay-logout-action" href="logout.html">
+                        <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v11H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                        Log Out
+                    </a>
+                </nav>
+                
+                <div class="overlay-panel-footer">
+                    <a class="overlay-logout-action" href="logout.html">
+                        <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v11H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                        Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <section class="hero-section">
             <div class="background-container">
