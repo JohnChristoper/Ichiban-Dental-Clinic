@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STATE MANAGEMENT & CONFIG ---
     let dbData = { services: [], holidays: [], bookedSlots: {}, clinicCaps: {} };
     let selectedPatientType = null;
-    let selectedService = { id: null, name: "", durationHours: 1 };
+    let consultationService = { 
+        id: null, 
+        name: "Dental Check-up & Consultation", 
+        durationHours: 1 
+    };
     
     // Baseline timeline anchors matching system logs
     const simulatedNow = new Date(2026, 4, 22, 11, 0); 
@@ -56,23 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // If new patient selected, load the new patient script
+        // Only handle new patient flow here
         if (selectedPatientType === 'new') {
-            // Redirect to new patient flow (requires new patient script to be loaded)
-            renderNewPatientFlow();
+            renderDateTimeStep();
         } else {
-            // Returning patient - proceed with service selection
-            renderServiceStep();
+            // Returning patient - load the main returning patient script
+            alert('Returning patient flow loaded');
+            // This should be handled by the main bookAppointmentFunction.js
         }
     });
 
-    // --- SHARED COMPONENT: GLOBAL STEP PROGRESS TRACKER (RETURNING PATIENT) ---
+    // --- NEW PATIENT STEP PROGRESS TRACKER (3 STEPS) ---
     function getProgressBarHTML(currentStep) {
         const steps = [
-            { num: 1, label: "Service" },
-            { num: 2, label: "Date & Time" },
-            { num: 3, label: "Your Details" },
-            { num: 4, label: "Confirm" }
+            { num: 1, label: "Date & Time" },
+            { num: 2, label: "Your Details" },
+            { num: 3, label: "Confirm" }
         ];
 
         return `
@@ -104,61 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // --- FIGMA FIG-1: SELECT SERVICE LAYER ---
-    function renderServiceStep() {
+    // --- STEP 1: PICK DATE & TIME LAYER (NEW PATIENT) ---
+    function renderDateTimeStep() {
         gridContainer.style.display = 'none';
         actionPanel.style.display = 'none';
         contentPlaceholder.style.display = 'block';
 
         contentPlaceholder.innerHTML = `
             ${getProgressBarHTML(1)}
-            <h2 class="flow-section-title">SELECT A SERVICE</h2>
-            <div class="services-list-container">
-                ${dbData.services.map(s => `
-                    <div class="service-selection-row" data-name="${s.name}" data-hours="${s.hours}">
-                        <span class="service-name-text">${s.name}</span>
-                        <span class="service-duration-text">${s.hours >= 1 ? `~ ${s.hours} Hour(s)` : '~ 30 mins'}</span>
-                    </div>
-                `).join('')}
-            </div>
-            <div class="flow-nav-buttons left-aligned">
-                <button type="button" class="btn-flow-back" id="backToTypeBtn">Back</button>
-                <button type="button" class="btn-flow-next" id="goToStep2" disabled>Next</button>
-            </div>
-        `;
-
-        const rows = document.querySelectorAll('.service-selection-row');
-        const nextBtn = document.getElementById('goToStep2');
-
-        rows.forEach(row => {
-            row.addEventListener('click', () => {
-                rows.forEach(r => r.classList.remove('selected'));
-                row.classList.add('selected');
-                
-                selectedService.name = row.getAttribute('data-name');
-                selectedService.durationHours = parseFloat(row.getAttribute('data-hours'));
-                nextBtn.removeAttribute('disabled');
-            });
-        });
-
-        document.getElementById('backToTypeBtn').addEventListener('click', () => {
-            contentPlaceholder.innerHTML = '';
-            contentPlaceholder.style.display = 'none';
-            gridContainer.style.display = 'grid';
-            actionPanel.style.display = 'flex';
-            selectedPatientType = null;
-            cards.forEach(c => c.classList.remove('active'));
-        });
-
-        nextBtn.addEventListener('click', renderDateTimeStep);
-    }
-
-    // --- FIGMA FIG-2 & 3: PICK DATE & TIME LAYER ---
-    function renderDateTimeStep() {
-        contentPlaceholder.innerHTML = `
-            ${getProgressBarHTML(2)}
             <h2 class="flow-section-title">PICK A DATE & TIME</h2>
-            <p class="service-summary-subtitle">${selectedService.name} &nbsp;•&nbsp; ~ ${selectedService.durationHours} Hour(s)</p>
+            <p class="service-summary-subtitle">Dental Check-up & Consultation &nbsp;•&nbsp; ~ 1 Hour</p>
             
             <div class="datetime-grid-layout">
                 <div class="calendar-card-wrapper">
@@ -184,8 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <div class="flow-nav-buttons left-aligned">
-                <button type="button" class="btn-flow-back" id="backToStep1">Back</button>
-                <button type="button" class="btn-flow-next" id="goToStep3" disabled>Next</button>
+                <button type="button" class="btn-flow-back" id="backToTypeBtn">Back</button>
+                <button type="button" class="btn-flow-next" id="goToStep2" disabled>Next</button>
             </div>
         `;
 
@@ -212,8 +170,16 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTimeSlots();
         });
 
-        document.getElementById('backToStep1').addEventListener('click', renderServiceStep);
-        document.getElementById('goToStep3').addEventListener('click', renderDetailsStep);
+        document.getElementById('backToTypeBtn').addEventListener('click', () => {
+            contentPlaceholder.innerHTML = '';
+            contentPlaceholder.style.display = 'none';
+            gridContainer.style.display = 'grid';
+            actionPanel.style.display = 'flex';
+            selectedPatientType = null;
+            cards.forEach(c => c.classList.remove('active'));
+        });
+
+        document.getElementById('goToStep2').addEventListener('click', renderDetailsStep);
     }
 
     function renderCalendarGrid() {
@@ -256,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.target.classList.add('selected');
                 selectedDateStr = e.target.getAttribute('data-date');
                 renderTimeSlots();
-                document.getElementById('goToStep3').setAttribute('disabled', 'disabled');
+                document.getElementById('goToStep2').setAttribute('disabled', 'disabled');
                 selectedTimeSlot = null;
             });
         });
@@ -287,15 +253,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
                 e.target.classList.add('selected');
                 selectedTimeSlot = e.target.getAttribute('data-time');
-                document.getElementById('goToStep3').removeAttribute('disabled');
+                document.getElementById('goToStep2').removeAttribute('disabled');
             });
         });
     }
 
-    // --- FIGMA FIG-4: YOUR DETAILS ACCOUNT LAYER ---
+    // --- STEP 2: YOUR DETAILS ACCOUNT LAYER (NEW PATIENT) ---
     function renderDetailsStep() {
         contentPlaceholder.innerHTML = `
-            ${getProgressBarHTML(3)}
+            ${getProgressBarHTML(2)}
             <h2 class="flow-section-title">YOUR DETAILS</h2>
             
             <form id="appointmentDetailsForm" class="details-form-layout-grid">
@@ -330,13 +296,13 @@ document.addEventListener('DOMContentLoaded', () => {
             </form>
 
             <div class="flow-nav-buttons left-aligned">
-                <button type="button" class="btn-flow-back" id="backToStep2">Back</button>
-                <button type="button" class="btn-flow-next" id="goToStep4">Next</button>
+                <button type="button" class="btn-flow-back" id="backToStep1">Back</button>
+                <button type="button" class="btn-flow-next" id="goToStep3">Next</button>
             </div>
         `;
 
-        document.getElementById('backToStep2').addEventListener('click', renderDateTimeStep);
-        document.getElementById('goToStep4').addEventListener('click', () => {
+        document.getElementById('backToStep1').addEventListener('click', renderDateTimeStep);
+        document.getElementById('goToStep3').addEventListener('click', () => {
             const detailForm = document.getElementById('appointmentDetailsForm');
             if (!detailForm.checkValidity()) {
                 detailForm.reportValidity();
@@ -345,17 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Extract input state variables cleanly
             const formData = new FormData(detailForm);
-            selectedService.firstName = formData.get('first_name');
-            selectedService.lastName = formData.get('last_name');
-            selectedService.email = formData.get('email');
-            selectedService.phone = formData.get('phone_number');
-            selectedService.notes = formData.get('medical_notes');
+            consultationService.firstName = formData.get('first_name');
+            consultationService.lastName = formData.get('last_name');
+            consultationService.email = formData.get('email');
+            consultationService.phone = formData.get('phone_number');
+            consultationService.notes = formData.get('medical_notes');
 
             renderConfirmationStep();
         });
     }
 
-    // --- FIGMA FIG-5: CONFIRM SLATE SUMMARY LAYER ---
+    // --- STEP 3: CONFIRM CONSULTATION BOOKING (NEW PATIENT) ---
     function renderConfirmationStep() {
         // Human readable conversion transformations
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -365,40 +331,40 @@ document.addEventListener('DOMContentLoaded', () => {
         const cleanTimeLabel = hourInt === 12 ? "12:00 PM" : hourInt > 12 ? `${hourInt - 12}:00 PM` : `${hourInt}:00 AM`;
 
         contentPlaceholder.innerHTML = `
-            ${getProgressBarHTML(4)}
-            <h2 class="flow-section-title">CONFIRM APPOINTMENT</h2>
+            ${getProgressBarHTML(3)}
+            <h2 class="flow-section-title">CONFIRM CONSULTATION</h2>
             
             <div class="confirmation-review-summary-card">
                 <h3 class="summary-card-header-title">Booking Details Overview</h3>
                 <div class="summary-details-matrix-grid">
-                    <div class="summary-data-cell"><strong>Selected Treatment:</strong> <span>${selectedService.name}</span></div>
+                    <div class="summary-data-cell"><strong>Service:</strong> <span>Dental Check-up & Consultation</span></div>
                     <div class="summary-data-cell"><strong>Scheduled Date:</strong> <span>${cleanDateLabel}</span></div>
                     <div class="summary-data-cell"><strong>Arrival Window:</strong> <span>${cleanTimeLabel}</span></div>
-                    <div class="summary-data-cell"><strong>Patient Name:</strong> <span>${selectedService.firstName} ${selectedService.lastName}</span></div>
-                    <div class="summary-data-cell"><strong>Contact Link:</strong> <span>${selectedService.phone} / ${selectedService.email}</span></div>
-                    ${selectedService.notes ? `<div class="summary-data-cell full-width"><strong>Medical Notation:</strong> <p>${selectedService.notes}</p></div>` : ''}
+                    <div class="summary-data-cell"><strong>Patient Name:</strong> <span>${consultationService.firstName} ${consultationService.lastName}</span></div>
+                    <div class="summary-data-cell"><strong>Contact Link:</strong> <span>${consultationService.phone} / ${consultationService.email}</span></div>
+                    ${consultationService.notes ? `<div class="summary-data-cell full-width"><strong>Medical Notation:</strong> <p>${consultationService.notes}</p></div>` : ''}
                 </div>
             </div>
 
             <div class="flow-nav-buttons left-aligned">
-                <button type="button" class="btn-flow-back" id="backToStep3">Back</button>
-                <button type="button" class="btn-flow-next final-action-submit" id="submitBookingBtn">Book Appointment</button>
+                <button type="button" class="btn-flow-back" id="backToStep2">Back</button>
+                <button type="button" class="btn-flow-next final-action-submit" id="submitConsultationBtn">Book Consultation</button>
             </div>
         `;
 
-        document.getElementById('backToStep3').addEventListener('click', renderDetailsStep);
-        document.getElementById('submitBookingBtn').addEventListener('click', executeFinalDatabaseCommit);
+        document.getElementById('backToStep2').addEventListener('click', renderDetailsStep);
+        document.getElementById('submitConsultationBtn').addEventListener('click', executeFinalDatabaseCommit);
     }
 
-    // --- SUCCESS STEP: APPOINTMENT CONFIRMED ---
+    // --- SUCCESS STEP: CONSULTATION BOOKED (NEW PATIENT) ---
     function renderSuccessStep() {
         contentPlaceholder.innerHTML = `
             <div class="success-confirmed-wrapper">
                 <div class="success-check-circle">✓</div>
-                <h2 class="success-title">Appointment Confirmed!</h2>
+                <h2 class="success-title">Consultation Booked!</h2>
                 <p class="success-subtitle">
-                    We'll send a confirmation to your email. See you at your appointment!<br>
-                    Please bring a <span class="success-highlight">valid ID</span> and any previous <span class="success-highlight">dental records</span> if available.
+                    We'll send a confirmation to your email. Our dentist will perform a thorough examination and discuss your treatment plan with you.<br>
+                    Please bring a <span class="success-highlight">valid ID</span> and any relevant <span class="success-highlight">medical history</span> to your appointment.
                 </p>
                 <button type="button" class="btn-flow-next" id="bookAnotherBtn">Book Another</button>
             </div>
@@ -410,9 +376,13 @@ document.addEventListener('DOMContentLoaded', () => {
             gridContainer.style.display = 'grid';
             actionPanel.style.display = 'flex';
             selectedPatientType = null;
-            selectedService = { id: null, name: "", durationHours: 1 };
             selectedDateStr = null;
             selectedTimeSlot = null;
+            consultationService = { 
+                id: null, 
+                name: "Dental Check-up & Consultation", 
+                durationHours: 1 
+            };
             cards.forEach(c => c.classList.remove('active'));
         });
     }
@@ -420,15 +390,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function executeFinalDatabaseCommit() {
         const payload = {
             patient_type: selectedPatientType,
-            service_name: selectedService.name,
+            service_name: consultationService.name,
             booking_date: selectedDateStr,
             booking_time: selectedTimeSlot,
-            duration_hours: selectedService.durationHours,
-            first_name: selectedService.firstName,
-            last_name: selectedService.lastName,
-            email: selectedService.email,
-            phone: selectedService.phone,
-            notes: selectedService.notes
+            duration_hours: consultationService.durationHours,
+            first_name: consultationService.firstName,
+            last_name: consultationService.lastName,
+            email: consultationService.email,
+            phone: consultationService.phone,
+            notes: consultationService.notes
         };
 
         fetch('backend/save_appointment.php', {
@@ -446,13 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
             console.error('Network write sequence fault:', err);
-            alert('A network connectivity fault occurred while finalizing your appointment request.');
+            alert('A network connectivity fault occurred while finalizing your consultation request.');
         });
-    }
-
-    // --- NEW PATIENT FLOW PLACEHOLDER ---
-    function renderNewPatientFlow() {
-        alert('New Patient flow - requires bookAppointmentNewPatient.js to be loaded');
-        // This will be handled by the separate new patient JS file
     }
 });

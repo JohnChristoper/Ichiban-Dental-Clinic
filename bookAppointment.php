@@ -301,5 +301,6 @@
 
         <script src="javascript/functionality.js"></script>
         <script src="javascript/bookAppointmentFunction.js"></script>
+        <script src="javascript/bookAppointmentNewPatient.js"></script>
     </body>
 </html>
