@@ -23,14 +23,14 @@ body {
     padding: 0;
 }
 
-.oral-prophylaxis {
+.service-type {
     width: 90%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
 
-.oral-prophylaxis button {
+.service-type button {
     width: 60px;
     height: 60px;
     border-radius: 50%;
