@@ -1164,3 +1164,186 @@ body {
     color: #2a9db5;
     font-weight: 500;
 }
+
+
+/* ================================================================= */
+/* MAX-WIDTH 400px — SMALL MOBILE OVERRIDES                          */
+/* ================================================================= */
+@media (max-width: 400px) {
+
+    /* Page container */
+    .appointment-page-container {
+        padding: 100px 14px 40px;
+    }
+
+    /* Hero title */
+    .appointment-main-title {
+        font-size: 2.2rem;
+    }
+
+    .appointment-subtitle {
+        font-size: 13px;
+    }
+
+    /* Form card */
+    .appointment-form-card-frame {
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    /* Patient type cards — stack to single column (already handled at 768px,
+       but tighten gap and padding further for very small screens) */
+    .patient-type-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .patient-type-card {
+        padding: 20px 16px;
+    }
+
+    .patient-type-card h3 {
+        font-size: 16px;
+    }
+
+    .patient-type-card p {
+        font-size: 13px;
+    }
+
+    /* Step wizard — hide labels, show only circles to save horizontal space */
+    .step-wizard-bar {
+        gap: 0;
+        margin-bottom: 24px;
+    }
+
+    .step-node .node-label {
+        display: none;
+    }
+
+    .step-line {
+        min-width: 16px;
+        max-width: 40px;
+        margin: 0 4px;
+    }
+
+    /* Section title */
+    .flow-section-title {
+        font-size: 18px;
+    }
+
+    /* Service summary subtitle */
+    .service-summary-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    /* Service list rows — stack name + duration vertically */
+    .service-selection-row {
+        padding: 14px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .service-name-text {
+        font-size: 14px;
+    }
+
+    .service-duration-text {
+        font-size: 12px;
+    }
+
+    /* Date & time grid — stack calendar above timeslots */
+    .datetime-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* Calendar day cells — tighter for narrow grids */
+    .calendar-day-cell,
+    .calendar-day-node {
+        padding: 7px 0;
+        font-size: 11px;
+    }
+
+    .calendar-days-grid {
+        gap: 4px;
+    }
+
+    .cal-month-label {
+        font-size: 14px;
+    }
+
+    /* Timeslots — single column on very small screens */
+    .timesheet-slots-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .time-slot {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    /* Details form — collapse double-column inputs to single column */
+    .form-input-row-group.double-column {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* Confirmation summary card */
+    .confirmation-review-summary-card {
+        padding: 16px;
+    }
+
+    .summary-card-header-title {
+        font-size: 15px;
+    }
+
+    /* Nav buttons — full width stacked */
+    .flow-nav-buttons,
+    .flow-nav-buttons.left-aligned {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-flow-back,
+    .btn-flow-next,
+    .patient-continue-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Success screen */
+    .success-subtitle {
+        width: 100%;
+        font-size: 0.85rem;
+    }
+
+    .success-title {
+        font-size: 1.5rem;
+    }
+
+    .success-check-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+    }
+
+    /* Contact / footer block */
+    .appointment-contact-container {
+        padding: 16px;
+    }
+
+    .footer-section-heading {
+        font-size: 15px;
+    }
+
+    .footer-info-leaf {
+        gap: 12px;
+    }
+
+    .footer-leaf-text p {
+        font-size: 13px;
+    }
+}

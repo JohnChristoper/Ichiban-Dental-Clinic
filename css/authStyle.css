@@ -275,3 +275,109 @@
 
 .auth-success-btn:hover  { background: var(--prussian-blue); }
 .auth-success-btn:active { transform: scale(0.98); }
+
+/* ==========================================================================
+   COMPLETE RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* 1. Tablets & Small Laptops (Max-width: 1024px) 
+   Softens the massive desktop shadow and prevents the card from feeling too bulky */
+@media (max-width: 1024px) {
+    .auth-modal-card {
+        box-shadow: 0 20px 60px rgba(0, 56, 82, 0.12);
+    }
+}
+
+/* 2. Small Tablets & Large Phones (Max-width: 768px)
+   Trims down the aggressive desktop desktop padding to maximize screen real estate */
+@media (max-width: 768px) {
+    .auth-modal-card {
+        padding: 36px 36px 40px;
+        max-width: 480px;
+    }
+    
+    .auth-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* 3. Standard Mobile Devices (Max-width: 540px)
+   Your original mobile query, optimized. Changes two-column rows into single columns 
+   so input fields don't get squished horizontally. */
+@media (max-width: 540px) {
+    .auth-modal-card {
+        padding: 32px 24px 36px;
+        border-radius: 14px;
+        max-width: 92%; /* Ensures the card doesn't touch the screen edges */
+    }
+    
+    .auth-field-row-2 {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* 4. Small Mobile Devices (Max-width: 400px)
+   Saves critical vertical space for smaller phones (like older iPhones or mini models) 
+   so the user doesn't have to scroll inside a tiny modal. */
+@media (max-width: 400px) {
+    .auth-modal-card {
+        padding: 24px 16px 28px;
+        border-radius: 12px;
+    }
+
+    .auth-title {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+    }
+
+    .auth-subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+    }
+
+    .auth-tab-row {
+        margin-bottom: 20px;
+    }
+
+    .auth-tab {
+        font-size: 0.88rem;
+        padding: 8px 2px;
+    }
+
+    .auth-field-group {
+        margin-bottom: 14px;
+        gap: 5px;
+    }
+
+    .auth-field-group label {
+        font-size: 0.8rem;
+    }
+
+    .auth-field-group input {
+        padding: 11px 13px;
+        font-size: 0.92rem;
+    }
+
+    .auth-submit-btn {
+        padding: 13px;
+        font-size: 0.95rem;
+        margin-top: 2px;
+    }
+
+    /* Success Screen Adjustments */
+    .auth-success-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 18px;
+    }
+
+    .auth-success-title {
+        font-size: 1.35rem;
+    }
+    
+    .auth-success-msg {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+}
