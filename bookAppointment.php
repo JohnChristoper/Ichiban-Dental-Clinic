@@ -369,6 +369,7 @@
             </div>
         </footer>
 
+        <script src="javascript/functionality.js"></script>
         <script src="javascript/bookAppointmentFunction.js"></script>
     </body>
 </html>
