@@ -6,7 +6,7 @@
         <title>Ichiban Dental Clinic</title>
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/indexStyle.css">
-
+        <link rel="stylesheet" href="css/authStyle.css">
     </head>
     <body>
         <header>
@@ -48,8 +48,8 @@
                             <img src="assets/images/GuestProfile.svg" alt="User Profile Picture">
                         </div>
                         <div class="overlay-user-info">
-                            <h3>Juan dela Cruz</h3>
-                            <p>Signed in with Google</p>
+                            <h3>Guest</h3>
+                            <p>Not signed in</p>
                         </div>
                     </div>
                 </div>
@@ -72,25 +72,22 @@
                         Contact
                     </a>
                     
-                    <a class="overlay-book-cta" href="bookAppointment.html">
+                    <a class="overlay-book-cta" href="bookAppointment.php">
                         <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                         Book Appointment
                     </a>
 
                     <hr class="overlay-menu-divider">
 
-                    <a class="overlay-logout-action" href="logout.html">
+                    <a class="overlay-login-action" href="javascript:void(0)" onclick="openAuthModal('login');">
+                        <svg viewBox="0 0 24 24"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
+                        Log In
+                    </a>
+                    <a class="overlay-logout-action" href="javascript:void(0)" onclick="closeFullscreenMenu(); window.doLogout();">
                         <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v11H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
                         Log Out
                     </a>
                 </nav>
-                
-                <div class="overlay-panel-footer">
-                    <a class="overlay-logout-action" href="logout.html">
-                        <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v11H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
-                        Log Out
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -890,5 +887,6 @@
         </footer>
 
         <script src="javascript/functionality.js"></script>
+        <script src="javascript/auth.js"></script>
     </body>
 </html>
