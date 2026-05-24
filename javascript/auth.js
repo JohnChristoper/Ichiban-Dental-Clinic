@@ -32,11 +32,38 @@
             .catch(() => applyGuestHeader());
     }
 
+    const AVATAR_COLORS = ['#008CB6', '#E6A23C', '#67C23A', '#E15639', '#8A2BE2', '#003852'];
+
+    // Helper to get a semi-consistent index color based on user ID or Name
+    function getAvatarColor(string) {
+        let hash = 0;
+        for (let i = 0; i < string.length; i++) {
+            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const index = Math.abs(hash) % AVATAR_COLORS.length;
+        return AVATAR_COLORS[index];
+    }
+
     // ── HEADER DOM UPDATES ──────────────────────────────────────────────────
     function applyGuestHeader() {
         const userInfo = document.querySelector('.overlay-user-info');
         const logoutLinks = document.querySelectorAll('.overlay-logout-action');
         const loginLinks = document.querySelectorAll('.overlay-login-action');
+
+        // Reset Header & Overlay Avatars back to default Guest Image Icon
+        const headerProfile = document.getElementById('headerProfile');
+        const overlayAvatar = document.getElementById('overlayAvatar');
+
+        if (headerProfile) {
+            headerProfile.className = "profile-avatar guest";
+            headerProfile.style.backgroundColor = "transparent";
+            headerProfile.innerHTML = `<img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile">`;
+        }
+        if (overlayAvatar) {
+            overlayAvatar.className = "overlay-avatar-circle guest";
+            overlayAvatar.style.backgroundColor = "#e1f6fc";
+            overlayAvatar.innerHTML = `<img src="assets/images/GuestProfile.svg" alt="User Profile Picture">`;
+        }
 
         if (userInfo) {
             const h3 = userInfo.querySelector('h3');
@@ -53,6 +80,26 @@
         const userInfo = document.querySelector('.overlay-user-info');
         const logoutLinks = document.querySelectorAll('.overlay-logout-action');
         const loginLinks = document.querySelectorAll('.overlay-login-action');
+
+        // Get the first uppercase letter of the first name
+        const firstLetter = user.first_name ? user.first_name.charAt(0).toUpperCase() : 'U';
+        // Get an avatar color unique to this user's name
+        const avatarColor = getAvatarColor(user.first_name || 'User');
+
+        // Update Header & Overlay profile icons to display the initial letter
+        const headerProfile = document.getElementById('headerProfile');
+        const overlayAvatar = document.getElementById('overlayAvatar');
+
+        if (headerProfile) {
+            headerProfile.className = "profile-avatar user-logged-in";
+            headerProfile.style.backgroundColor = avatarColor;
+            headerProfile.textContent = firstLetter;
+        }
+        if (overlayAvatar) {
+            overlayAvatar.className = "overlay-avatar-circle user-logged-in";
+            overlayAvatar.style.backgroundColor = avatarColor;
+            overlayAvatar.textContent = firstLetter;
+        }
 
         if (userInfo) {
             const h3 = userInfo.querySelector('h3');
