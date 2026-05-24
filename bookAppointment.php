@@ -27,7 +27,7 @@
         <main class="appointment-page-container">
         
             <section class="appointment-intro-group">
-                <h1 class="appointment-main-title">Get an <span class="title-emphasis">Appointment</span></h1>
+                <h1 class="appointment-main-title ">Get an <span class="title-emphasis">Appointment</span></h1>
                 <p class="appointment-subtitle">
                     Discover modern dental care delivered with comfort in mind. At Ichiban Dental, we're here to meet all your oral health needs. Please complete the appointment form below, and a representative will contact you shortly.
                 </p>
@@ -299,8 +299,6 @@
             </div>
         </footer>
 
-        <script src="javascript/functionality.js"></script>
         <script src="javascript/bookAppointmentFunction.js"></script>
-        <script src="javascript/bookAppointmentNewPatient.js"></script>
     </body>
 </html>
