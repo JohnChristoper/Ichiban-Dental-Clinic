@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="timesheet-legend-bar">
                         <div class="legend-item"><span class="legend-dot available"></span> Available</div>
                         <div class="legend-item"><span class="legend-dot booked"></span> Booked</div>
-                        <div class="legend-item"><span class="legend-dot holiday"></span> Holiday</div>
+                        <div class="legend-item"><span class="legend-dot booked" style="background-color: #FF7878;"></span> Holiday</div>
                     </div>
                     <div id="timesheetsGrid" class="timesheet-slots-grid"></div>
                 </div>
@@ -205,18 +205,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const isToday = date.toDateString() === simulatedNow.toDateString();
             const isPast = date < simulatedNow;
             const isHoliday = dbData.holidays.includes(dateStr);
+            const isSunday = date.getDay() === 0;
 
             let cellClass = 'calendar-day-cell';
             if (isToday) cellClass += ' today';
             if (isPast) cellClass += ' past';
             if (isHoliday) cellClass += ' holiday';
+            if (isSunday) cellClass += ' sunday';
             if (selectedDateStr === dateStr) cellClass += ' selected';
 
             const cellHTML = `<div class="${cellClass}" data-date="${dateStr}">${day}</div>`;
             calGrid.innerHTML += cellHTML;
         }
 
-        document.querySelectorAll('.calendar-day-cell:not(.empty, .past, .holiday)').forEach(cell => {
+        document.querySelectorAll('.calendar-day-cell:not(.empty, .past, .holiday, .sunday)').forEach(cell => {
             cell.addEventListener('click', (e) => {
                 document.querySelectorAll('.calendar-day-cell').forEach(c => c.classList.remove('selected'));
                 e.target.classList.add('selected');
@@ -237,14 +239,90 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Get service duration (for new patient, always 1 hour)
+        const serviceDurationHours = 1;
+
+        // Generate time slots based on day of week
+        const selectedDate = new Date(selectedDateStr);
+        const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        
+        let timeSlots = [];
+        let closingHour = 17; // 5 PM default
+        
+        if (dayOfWeek === 0) {
+            // Sunday - closed
+            timeGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #FF7878; font-weight: 600;">Clinic Closed on Sundays</p>';
+            return;
+        } else if (dayOfWeek === 6) {
+            // Saturday/Weekend - 9 AM to 4 PM
+            closingHour = 16;
+            for (let hour = 9; hour < closingHour; hour++) {
+                timeSlots.push(`${String(hour).padStart(2, '0')}:00`);
+            }
+        } else {
+            // Weekday (Mon-Fri) - 8 AM to 5 PM
+            closingHour = 17;
+            for (let hour = 8; hour < closingHour; hour++) {
+                timeSlots.push(`${String(hour).padStart(2, '0')}:00`);
+            }
+        }
+
         const bookedTimes = dbData.bookedSlots[selectedDateStr] || [];
-        const timeSlots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+        const today = new Date(simulatedNow.getFullYear(), simulatedNow.getMonth(), simulatedNow.getDate());
+        const selectedDay = new Date(selectedDateStr);
+        const isToday = selectedDay.getTime() === today.getTime();
+        const currentHour = simulatedNow.getHours();
+        const minimumBookingHoursAhead = 2; // Can't book within 2 hours
 
         timeSlots.forEach(time => {
-            const isBooked = bookedTimes.includes(time);
-            const slotClass = isBooked ? 'time-slot booked' : 'time-slot available';
+            const [hour] = time.split(':').map(Number);
+            const slotDate = new Date(selectedDateStr);
+            slotDate.setHours(hour, 0, 0, 0);
             
-            const slotHTML = `<div class="${slotClass}" data-time="${time}">${time}</div>`;
+            // Check if slot is in the past
+            const isPast = isToday && hour <= currentHour;
+            
+            // Check if slot is too soon (less than minimum booking window)
+            const hoursTilSlot = isToday ? (hour - currentHour) : 24; // If today, check hours; if future date, never too soon
+            const isTooSoon = isToday && hoursTilSlot <= minimumBookingHoursAhead;
+            
+            // Check if slot is booked
+            const isBooked = bookedTimes.includes(time);
+            
+            // Check if any slot within service duration is booked (duration blocking)
+            let isDurationBlocked = false;
+            for (let i = 0; i < serviceDurationHours; i++) {
+                const checkHour = hour + i;
+                const checkTime = `${String(checkHour).padStart(2, '0')}:00`;
+                if (bookedTimes.includes(checkTime)) {
+                    isDurationBlocked = true;
+                    break;
+                }
+            }
+            
+            // Check if slot exceeds clinic closing time
+            const exceedsClosing = (hour + serviceDurationHours) > closingHour;
+            
+            // Determine slot state
+            let slotState = 'available';
+            let displayText = time;
+            
+            if (isPast) {
+                slotState = 'past';
+                displayText = `${time} Past`;
+            } else if (isTooSoon) {
+                slotState = 'past';
+                displayText = `${time} Too Soon`;
+            } else if (isBooked || isDurationBlocked) {
+                slotState = 'booked';
+                displayText = `${time} Booked`;
+            } else if (exceedsClosing) {
+                slotState = 'booked';
+                displayText = `${time} Closed`;
+            }
+            
+            const slotClass = `time-slot ${slotState}`;
+            const slotHTML = `<div class="${slotClass}" data-time="${time}">${displayText}</div>`;
             timeGrid.innerHTML += slotHTML;
         });
 
