@@ -27,7 +27,39 @@
                     <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile">
                 </div>
             </div>
+
+            <!-- Hamburger button (mobile only) -->
+            <button class="hamburger-btn" onclick="openMobileMenu()" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </header>
+
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <div class="logo-container">
+                <img class="blue-logo" src="assets/images/BlueLogo.png" alt="Teeth logo">
+                <p class="clinic-name">Ichiban Dental Clinic</p>
+                </div>
+                <button class="close-mobile-btn" onclick="closeMobileMenu()" aria-label="Close menu">&#x2715;</button>
+            </div>
+
+            <div class="mobile-menu-avatar">
+                <div class="avatar-circle">
+                <img src="assets/images/GuestProfile.svg" alt="Guest Profile">
+                </div>
+            </div>
+
+            <nav class="mobile-nav">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="mobile-book-btn" href="bookAppointment.php">Book Appointment</a>
+                <a class="mobile-login-btn" href="javascript:void(0)" onclick="closeMobileMenu(); openAuthModal('login');">Log In</a>
+            </nav>
+            </div>
 
         <div class="fullscreen-menu-overlay" id="fullscreenMenu" onclick="closeFullscreenMenu()">
             
@@ -890,5 +922,17 @@
 
         <script src="javascript/functionality.js"></script>
         <script src="javascript/auth.js"></script>
+        
+        <script>
+            function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.body.style.overflow = '';
+            }
+        </script>
     </body>
 </html>

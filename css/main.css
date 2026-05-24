@@ -5,7 +5,7 @@
     --artyclick-blue: #00B8E3;
     --turquoise-blue: #6CE0FE;
 }
-
+ 
 body {
     margin: 0;
 }
@@ -368,6 +368,172 @@ nav a {
     background-color: #0A4B63;
 }
 
+.hamburger-btn {
+  display: none;
+}
+
+.mobile-menu-overlay {
+  display: none;
+}
+
+/* ===== HAMBURGER MENU — max-width: 400px ===== */
+@media (max-width: 400px) {
+
+  header {
+    height: 64px;
+    padding: 0 16px;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .logo-container {
+    height: auto;
+  }
+
+  .blue-logo {
+    margin: 0 8px 0 0;
+    height: 34px;
+  }
+
+  .clinic-name {
+    font-size: 15px;
+  }
+
+  /* Hide desktop nav and profile icon */
+  header nav,
+  .profile-menu-container {
+    display: none;
+  }
+
+  /* Show hamburger button */
+  .hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger-btn .bar {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background-color: var(--venice-blue);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Mobile overlay menu */
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 9999;
+    flex-direction: column;
+  }
+
+  .mobile-menu-overlay.open {
+    display: flex;
+  }
+
+  .mobile-menu-header {
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 64px;
+    border-bottom: 1px solid #eef3f5;
+    flex-shrink: 0;
+  }
+
+  .mobile-menu-header .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .close-mobile-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--venice-blue);
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .mobile-menu-avatar {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0 20px;
+  }
+
+  .mobile-menu-avatar .avatar-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: #e1f6fc;
+    border: 2px solid var(--bondi-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mobile-menu-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobile-nav {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 20px;
+  }
+
+  .mobile-nav a {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--venice-blue);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+    box-sizing: border-box;
+  }
+
+  .mobile-nav a:hover {
+    background-color: #e1f6fc;
+  }
+
+  .mobile-nav .mobile-book-btn {
+    background-color: var(--venice-blue);
+    color: #ffffff !important;
+    border-radius: 30px;
+    margin-top: 8px;
+  }
+
+  .mobile-nav .mobile-login-btn {
+    border: 2px solid var(--venice-blue);
+    border-radius: 30px;
+    margin-top: 8px;
+  }
+}
+
+
+
 /* =================== Footer Section ========================== */
 footer, footer * {
     box-sizing: border-box;
@@ -651,39 +817,3 @@ footer ul li a:hover {
     stroke: #6CE0FE;
 }
 
-/* Styling for the custom letter profile avatar wrappers */
-.profile-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    margin-right: 20px;
-    font-family: 'Inter', sans-serif;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.profile-avatar:hover {
-    transform: scale(1.05);
-}
-
-/* Adjustments for the text format specifically when logged in */
-.profile-avatar.user-logged-in,
-.overlay-avatar-circle.user-logged-in {
-    color: #ffffff; /* Crisp white letter text color */
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none; /* Removes image-only borders if necessary */
-}
-
-/* Make sure overlay circle scales content beautifully */
-.overlay-avatar-circle.user-logged-in {
-    font-size: 16px;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-}
