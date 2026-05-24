@@ -4,13 +4,8 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// ── DB CONFIG ─────────────────────────────────────────────────────────────────
-$host = 'localhost';
-$db   = 'ichiban_dental';
-$user = 'root';
-$pass = '';
-$port = 3306;
-// ─────────────────────────────────────────────────────────────────────────────
+// Load your existing PDO configuration instance
+require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -27,113 +22,53 @@ if (!$input) {
 }
 
 // ── VALIDATE REQUIRED FIELDS ─────────────────────────────────────────────────
-$required = ['patient_type', 'service_name', 'booking_date', 'booking_time',
-             'first_name', 'last_name', 'email', 'phone'];
+// Changed 'service_name' to 'service_id' to match standard relational database structure
+$required = ['patient_type', 'service_id', 'booking_date', 'booking_time',
+            'first_name', 'last_name', 'email', 'phone', 'duration_hours'];
 
 foreach ($required as $field) {
-    if (empty($input[$field])) {
+    if (empty($input[$field]) && $input[$field] !== 0) {
         http_response_code(422);
-        echo json_encode(['success' => false, 'message' => "Missing required field: $field"]);
+        echo json_encode(['success' => false, 'message' => "Missing field: $field"]);
         exit;
     }
 }
 
-// ── SANITIZE ─────────────────────────────────────────────────────────────────
-$patientType   = htmlspecialchars(trim($input['patient_type']));
-$serviceName   = trim($input['service_name']);
-$bookingDate   = trim($input['booking_date']);
-$bookingTime   = trim($input['booking_time']);
-$firstName     = htmlspecialchars(trim($input['first_name']));
-$lastName      = htmlspecialchars(trim($input['last_name']));
-$email         = filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL);
-$phone         = htmlspecialchars(trim($input['phone']));
-$notes         = htmlspecialchars(trim($input['notes'] ?? ''));
+$patientType   = $input['patient_type'];
+$serviceId     = intval($input['service_id']); 
+$bookingDate   = $input['booking_date'];
+$bookingTime   = $input['booking_time'];
+$firstName     = $input['first_name'];
+$lastName      = $input['last_name'];
+$email         = $input['email'];
+$phone         = $input['phone'];
+$notes         = $input['notes'] ?? '';
+// FIX FOR BUG 2: Correctly defining duration hours from JavaScript payload
+$durationHours = intval($input['duration_hours']); 
 
-if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $bookingDate) ||
-    !preg_match('/^\d{2}:\d{2}$/', $bookingTime)) {
-    http_response_code(422);
-    echo json_encode(['success' => false, 'message' => 'Invalid date or time format.']);
-    exit;
-}
+// Format clean SQL execution stamps
+$formattedTime = date('H:i:s', strtotime($bookingTime));
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(422);
-    echo json_encode(['success' => false, 'message' => 'Invalid email address.']);
-    exit;
-}
-
-// ── CONNECT ───────────────────────────────────────────────────────────────────
 try {
-    $pdo = new PDO(
-        "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
-        $user,
-        $pass,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Database connection failed.']);
-    exit;
-}
+    // Start PDO transaction monitoring sequence block
+    $pdo->beginTransaction();
 
-// ── LOOK UP service_id FROM service_name ──────────────────────────────────────
-try {
-    $svc = $pdo->prepare("SELECT id, duration_hours FROM services WHERE name = :name LIMIT 1");
-    $svc->execute([':name' => $serviceName]);
-    $service = $svc->fetch(PDO::FETCH_ASSOC);
-
-    if (!$service) {
-        http_response_code(422);
-        echo json_encode(['success' => false, 'message' => "Service not found: $serviceName"]);
-        exit;
-    }
-
-    $serviceId     = (int) $service['id'];
-    $durationHours = isset($input['duration_hours'])
-                     ? (float) $input['duration_hours']
-                     : (float) $service['duration_hours'];
-
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Could not look up service.']);
-    exit;
-}
-
-// ── DUPLICATE BOOKING GUARD ───────────────────────────────────────────────────
-try {
-    $check = $pdo->prepare("
-        SELECT COUNT(*) FROM appointments
-        WHERE booking_date = :date
-          AND booking_time = :time
-          AND status NOT IN ('cancelled')
-    ");
-    $check->execute([':date' => $bookingDate, ':time' => $bookingTime]);
-    if ((int) $check->fetchColumn() > 0) {
-        echo json_encode(['success' => false, 'message' => 'That slot is already booked. Please choose another time.']);
-        exit;
-    }
-} catch (PDOException $e) {
-    // proceed anyway
-}
-
-// ── INSERT ────────────────────────────────────────────────────────────────────
-try {
+    // 1. SAVE TO MASTER APPOINTMENTS TABLE
+    // FIX FOR BUG 1: Replaced 'service_name' with 'service_id' to match your database schema
     $stmt = $pdo->prepare("
         INSERT INTO appointments
             (patient_type, service_id, booking_date, booking_time,
-             first_name, last_name, email, phone,
-             medical_notes, status)
+             first_name, last_name, email, phone, medical_notes, status)
         VALUES
             (:patient_type, :service_id, :booking_date, :booking_time,
-             :first_name, :last_name, :email, :phone,
-             :medical_notes, 'pending')
+             :first_name, :last_name, :email, :phone, :medical_notes, 'pending')
     ");
 
     $stmt->execute([
         ':patient_type'  => $patientType,
         ':service_id'    => $serviceId,
         ':booking_date'  => $bookingDate,
-        ':booking_time'  => $bookingTime,
+        ':booking_time'  => $formattedTime,
         ':first_name'    => $firstName,
         ':last_name'     => $lastName,
         ':email'         => $email,
@@ -141,13 +76,48 @@ try {
         ':medical_notes' => $notes,
     ]);
 
+    // Grab the database ID number generated for this appointment row entry
+    $appointmentId = $pdo->lastInsertId();
+
+    // 2. LOOP THROUGH AND BLOCK OUT EACH HOUR SLOT ON THE CALENDAR
+    $startHour = (int)date('H', strtotime($bookingTime));
+
+    for ($i = 0; $i < $durationHours; $i++) {
+        $currentHourBlock = $startHour + $i;
+        $computedTimeSlot = str_pad($currentHourBlock, 2, '0', STR_PAD_LEFT) . ":00:00";
+
+        $slotStmt = $pdo->prepare("
+            INSERT INTO booked_slots (appointment_id, booking_date, booking_time)
+            VALUES (:appointment_id, :booking_date, :booking_time)
+        ");
+        $slotStmt->execute([
+            ':appointment_id' => $appointmentId,
+            ':booking_date'   => $bookingDate,
+            ':booking_time'   => $computedTimeSlot
+        ]);
+    }
+
+    // Commit changes safely to database
+    $pdo->commit();
+
     echo json_encode([
         'success'        => true,
-        'appointment_id' => $pdo->lastInsertId(),
-        'message'        => 'Appointment booked successfully.'
+        'appointment_id' => $appointmentId,
+        'message'        => 'Appointment and calendar blocks locked completely!'
     ]);
 
 } catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+    // Rollback changes completely if any error occurs
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+
+    // Catch unique entry collision errors (MySQL Error code 23000 indicates unique duplicate values)
+    if ($e->getCode() == 23000 || strpos($e->getMessage(), '1062') !== false) {
+        http_response_code(409);
+        echo json_encode(['success' => false, 'message' => 'That slot is already booked. Please choose another time.']);
+    } else {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Database failure details: ' . $e->getMessage()]);
+    }
 }

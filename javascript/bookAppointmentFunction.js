@@ -21,41 +21,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentPlaceholder = document.querySelector('.middle-form-content-placeholder');
 
     // Fetch live system rules from backend service endpoints
-    fetch('get_availability.php')
-        .then(res => res.json())
-        .then(data => {
-            dbData = data;
-        })
-        .catch(err => {
-            console.warn("Using baseline database fallbacks:", err);
-            dbData = {
-                services:[
-                    { id: 1, name: "Oral prophylaxis", duration: "~ 1 hour", hours: 1 },
-                    { id: 2, name: "Digital dental X-ray", duration: "~ 30 minutes", hours: 1 }, 
-                    { id: 3, name: "Dental check-up & consultation", duration: "~ 1 hour", hours: 1 },
-                    { id: 4, name: "Laser teeth whitening", duration: "~ 2 hours", hours: 2 },
-                    { id: 5, name: "Composite / direct veneers", duration: "~ 2 hours", hours: 2 },
-                    { id: 6, name: "Porcelain veneers", duration: "~ 2 hours", hours: 2 },
-                    { id: 7, name: "Zirconia veneers", duration: "~ 2 hours", hours: 2 },
-                    { id: 8, name: "Dental fillings", duration: "~ 1 hour", hours: 1 },
-                    { id: 9, name: "Dental crowns", duration: "~ 2 hours", hours: 2 },
-                    { id: 10, name: "Complete dentures", duration: "~ 2 hours", hours: 2 },
-                    { id: 11, name: "Removable partial dentures", duration: "~ 2 hours", hours: 2 },
-                    { id: 12, name: "Root canal treatment", duration: "~ 3 hours", hours: 3 },
-                    { id: 13, name: "Braces", duration: "~ 1 hour", hours: 1 },
-                    { id: 14, name: "Invisalign", duration: "~ 1 hour", hours: 1 },
-                    { id: 15, name: "Children's dental check-up", duration: "~ 1 hour", hours: 1 },
-                    { id: 16, name: "Fluoride treatment", duration: "~ 30 minutes", hours: 1 },
-                    { id: 17, name: "Dental sealants", duration: "~ 1 hour", hours: 1 },
-                    { id: 18, name: "Tooth extraction", duration: "~ 1 hour", hours: 1 },
-                    { id: 19, name: "Oral surgery", duration: "~ 3 hours", hours: 3 },
-                    { id: 20, name: "Dental implants", duration: "~ 3 hours", hours: 3 }
-                ],
-                holidays: [],
-                bookedSlots: {},
-                clinicCaps: {}
-            };
-        });
+    function refreshAvailability() {
+        return fetch('backend/get_availability.php')
+            .then(res => res.json())
+            .then(data => {
+                dbData = data;
+            })
+            .catch(err => {
+                console.warn("Using baseline database fallbacks:", err);
+                dbData = {
+                    services:[
+                        { id: 1, name: "Oral prophylaxis", duration: "~ 1 hour", hours: 1 },
+                        { id: 2, name: "Digital dental X-ray", duration: "~ 30 minutes", hours: 1 }, 
+                        { id: 3, name: "Dental check-up & consultation", duration: "~ 1 hour", hours: 1 },
+                        { id: 4, name: "Laser teeth whitening", duration: "~ 2 hours", hours: 2 },
+                        { id: 5, name: "Composite / direct veneers", duration: "~ 2 hours", hours: 2 },
+                        { id: 6, name: "Porcelain veneers", duration: "~ 2 hours", hours: 2 },
+                        { id: 7, name: "Zirconia veneers", duration: "~ 2 hours", hours: 2 },
+                        { id: 8, name: "Dental fillings", duration: "~ 1 hour", hours: 1 },
+                        { id: 9, name: "Dental crowns", duration: "~ 2 hours", hours: 2 },
+                        { id: 10, name: "Complete dentures", duration: "~ 2 hours", hours: 2 },
+                        { id: 11, name: "Removable partial dentures", duration: "~ 2 hours", hours: 2 },
+                        { id: 12, name: "Root canal treatment", duration: "~ 3 hours", hours: 3 },
+                        { id: 13, name: "Braces", duration: "~ 1 hour", hours: 1 },
+                        { id: 14, name: "Invisalign", duration: "~ 1 hour", hours: 1 },
+                        { id: 15, name: "Children's dental check-up", duration: "~ 1 hour", hours: 1 },
+                        { id: 16, name: "Fluoride treatment", duration: "~ 30 minutes", hours: 1 },
+                        { id: 17, name: "Dental sealants", duration: "~ 1 hour", hours: 1 },
+                        { id: 18, name: "Tooth extraction", duration: "~ 1 hour", hours: 1 },
+                        { id: 19, name: "Oral surgery", duration: "~ 3 hours", hours: 3 },
+                        { id: 20, name: "Dental implants", duration: "~ 3 hours", hours: 3 }
+                    ],
+                    holidays: [],
+                    bookedSlots: {},
+                    clinicCaps: {}
+                };
+            });
+    }
+
+    // Run it immediately on page load
+    refreshAvailability();
 
     // Capture initial entry point selection toggles
     cards.forEach(card => {
@@ -73,9 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Flow Split Routing Functionality
+        // Flow Split Routing Functionality
         if (selectedPatientType === 'new') {
-            // Auto-fallback default service allocation for new patient track
-            selectedService = { id: 3, name: "Dental Check-up & Consultation", durationHours: 1 };
+            // Set the state fully for the consultation service
+            selectedService = { 
+                id: 3, 
+                name: "Dental check-up & consultation", // Match lowercase 'c' from get_availability database defaults
+                durationHours: 1,
+                duration_hours: 1
+            };
             renderDateTimeStep();
         } else {
             renderServiceStep();
@@ -141,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class="flow-section-title">SELECT A SERVICE</h2>
             <div class="services-list-container">
                 ${dbData.services.map(s => `
-                    <div class="service-selection-row" data-name="${s.name}" data-hours="${s.hours}">
+                    <div class="service-selection-row" data-id="${s.id}" data-name="${s.name}" data-hours="${s.hours}">
                         <span class="service-name-text">${s.name}</span>
                         <span class="service-duration-text">${s.hours >= 1 ? `~ ${s.hours} Hour(s)` : '~ 30 mins'}</span>
                     </div>
@@ -161,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 rows.forEach(r => r.classList.remove('selected'));
                 row.classList.add('selected');
                 
+                selectedService.id = parseInt(row.getAttribute('data-id'));
                 selectedService.name = row.getAttribute('data-name');
                 selectedService.durationHours = parseFloat(row.getAttribute('data-hours'));
                 nextBtn.removeAttribute('disabled');
@@ -285,8 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateStr = `${currentCalYear}-${String(currentCalMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const date = new Date(currentCalYear, currentCalMonth, day);
             const isToday = date.toDateString() === simulatedNow.toDateString();
-            const isPast = date < simulatedNow;
-            const isHoliday = dbData.holidays.includes(dateStr);
+            const todayMidnight = new Date(simulatedNow.getFullYear(), simulatedNow.getMonth(), simulatedNow.getDate());
+            const isPast = date < todayMidnight;
+            const isHoliday = Array.isArray(dbData.holidays) && dbData.holidays.map(h => String(h).trim()).includes(dateStr);
             const isSunday = date.getDay() === 0;
 
             let cellClass = 'calendar-day-cell';
@@ -394,13 +407,28 @@ document.addEventListener('DOMContentLoaded', () => {
             timeGrid.innerHTML += slotHTML;
         });
 
+        // Attach click handlers ONLY to available slots, blocking booked/past ones
         document.querySelectorAll('.time-slot.available').forEach(slot => {
             slot.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
                 e.target.classList.add('selected');
                 selectedTimeSlot = e.target.getAttribute('data-time');
                 document.getElementById('goToDetailsBtn').removeAttribute('disabled');
             });
+        });
+        
+        // Prevent any interaction with booked/past slots
+        document.querySelectorAll('.time-slot.booked, .time-slot.past').forEach(slot => {
+            slot.style.pointerEvents = 'none';
+            slot.style.cursor = 'not-allowed';
+            slot.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, true);
         });
     }
 
@@ -539,10 +567,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function executeFinalDatabaseCommit() {
         const payload = {
             patient_type: selectedPatientType,
+            service_id: selectedService.id, 
             service_name: selectedService.name,
             booking_date: selectedDateStr,
             booking_time: selectedTimeSlot,
-            duration_hours: selectedService.durationHours,
+            duration_hours: selectedService.durationHours || selectedService.duration_hours || 1,
             first_name: selectedService.firstName,
             last_name: selectedService.lastName,
             email: selectedService.email,
@@ -558,7 +587,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(response => {
             if (response.success) {
-                renderSuccessStep();
+                // Refresh local cache data from database so slots turn red immediately behind the scenes
+                refreshAvailability().then(() => {
+                    renderSuccessStep();
+                });
             } else {
                 alert('Error processing request: ' + response.message);
             }
