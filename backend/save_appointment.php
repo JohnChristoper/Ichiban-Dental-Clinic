@@ -22,7 +22,6 @@ if (!$input) {
 }
 
 // ── VALIDATE REQUIRED FIELDS ─────────────────────────────────────────────────
-// Changed 'service_name' to 'service_id' to match standard relational database structure
 $required = ['patient_type', 'service_id', 'booking_date', 'booking_time',
             'first_name', 'last_name', 'email', 'phone', 'duration_hours'];
 
@@ -34,6 +33,7 @@ foreach ($required as $field) {
     }
 }
 
+$patientId     = isset($input['patient_id']) ? intval($input['patient_id']) : null;
 $patientType   = $input['patient_type'];
 $serviceId     = intval($input['service_id']); 
 $bookingDate   = $input['booking_date'];
@@ -43,8 +43,7 @@ $lastName      = $input['last_name'];
 $email         = $input['email'];
 $phone         = $input['phone'];
 $notes         = $input['notes'] ?? '';
-// FIX FOR BUG 2: Correctly defining duration hours from JavaScript payload
-$durationHours = intval($input['duration_hours']); 
+$durationHours = intval($input['duration_hours']);
 
 // Format clean SQL execution stamps
 $formattedTime = date('H:i:s', strtotime($bookingTime));
@@ -54,17 +53,17 @@ try {
     $pdo->beginTransaction();
 
     // 1. SAVE TO MASTER APPOINTMENTS TABLE
-    // FIX FOR BUG 1: Replaced 'service_name' with 'service_id' to match your database schema
     $stmt = $pdo->prepare("
         INSERT INTO appointments
-            (patient_type, service_id, booking_date, booking_time,
+            (patient_id, patient_type, service_id, booking_date, booking_time,
              first_name, last_name, email, phone, medical_notes, status)
         VALUES
-            (:patient_type, :service_id, :booking_date, :booking_time,
+            (:patient_id, :patient_type, :service_id, :booking_date, :booking_time,
              :first_name, :last_name, :email, :phone, :medical_notes, 'pending')
     ");
 
     $stmt->execute([
+        ':patient_id'    => $patientId,
         ':patient_type'  => $patientType,
         ':service_id'    => $serviceId,
         ':booking_date'  => $bookingDate,

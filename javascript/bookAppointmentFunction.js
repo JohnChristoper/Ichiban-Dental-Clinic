@@ -62,9 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run it immediately on page load
     refreshAvailability();
 
+    // ── AUTH GUARD — shows login modal if user is not logged in ──────────────
+    function requireAuth() {
+        const user = (typeof window.getAuthUser === 'function') ? window.getAuthUser() : null;
+        if (!user) {
+            if (typeof window.openAuthModal === 'function') window.openAuthModal('login');
+            return false;
+        }
+        return true;
+    }
+
     // Capture initial entry point selection toggles
     cards.forEach(card => {
         card.addEventListener('click', () => {
+            if (!requireAuth()) return; // ← block & show login modal if guest
             cards.forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             selectedPatientType = card.classList.contains('first-visit-card') ? 'new' : 'returning';
@@ -72,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     continueBtn.addEventListener('click', () => {
+        if (!requireAuth()) return; // ← double-guard on Continue button
         if (!selectedPatientType) {
             alert('Please select a patient category to continue.');
             return;
         }
         
-        // Flow Split Routing Functionality
         // Flow Split Routing Functionality
         if (selectedPatientType === 'new') {
             // Set the state fully for the consultation service
@@ -565,7 +576,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function executeFinalDatabaseCommit() {
+        const authUser = (typeof window.getAuthUser === 'function') ? window.getAuthUser() : null;
         const payload = {
+            patient_id: authUser ? authUser.id : null,
             patient_type: selectedPatientType,
             service_id: selectedService.id, 
             service_name: selectedService.name,
