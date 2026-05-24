@@ -24,7 +24,9 @@
             </nav>
             
             <div class="profile-menu-container">
-                <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile" onclick="openFullscreenMenu()">
+                <div id="headerProfile" class="profile-avatar guest" onclick="openFullscreenMenu()">
+                    <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile">
+                </div>
             </div>
         </header>
 
@@ -45,7 +47,7 @@
                 
                 <div class="overlay-profile-section">
                     <div class="overlay-user-card">
-                        <div class="overlay-avatar-circle">
+                        <div id="overlayAvatar" class="overlay-avatar-circle guest">
                             <img src="assets/images/GuestProfile.svg" alt="User Profile Picture">
                         </div>
                         <div class="overlay-user-info">
