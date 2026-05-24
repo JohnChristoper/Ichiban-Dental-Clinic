@@ -196,22 +196,22 @@
             <div class="base-2">
                 <h3>QUICK LINKS</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
 
             <div class="base-3">
                 <h3>OUR SERVICES</h3>
                 <ul>
-                    <li><a href="#">Preventive Care</a></li>
-                    <li><a href="#">Cosmetic Dentistry</a></li>
-                    <li><a href="#">Restorative Dentistry</a></li>
-                    <li><a href="#">Pediatric & Family</a></li>
-                    <li><a href="#">Orthodontics</a></li>
-                    <li><a href="#">Oral Surgery</a></li>
+                    <li><a href="services.html#preventive">Preventive Care</a></li>
+                    <li><a href="services.html#cosmetic">Cosmetic Dentistry</a></li>
+                    <li><a href="services.html#restorative">Restorative Dentistry</a></li>
+                    <li><a href="services.html#pediatric">Pediatric & Family</a></li>
+                    <li><a href="services.html#orthodontics">Orthodontics</a></li>
+                    <li><a href="services.html#oral-surgery">Oral Surgery</a></li>
                 </ul>
             </div>
 
@@ -243,7 +243,7 @@
                         </div>
                         <div class="contact-text">
                             <span class="label">ADDRESS</span>
-                            <p>123 Dental Avenue, Suite 200<br>Your City, Province 0000</p>
+                            <p>55 G. Marcelo, Valenzuela, 1444 Metro Manila</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -274,7 +274,7 @@
                         </div>
                         <div class="contact-text">
                             <span class="label">PHONE</span>
-                            <p>(000) 000-0000</p>
+                            <p>+63 995 181 1137</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -299,7 +299,7 @@
                         </div>
                         <div class="contact-text">
                             <span class="label">EMAIL</span>
-                            <p>hello@dentalcare.com</p>
+                            <p>ichibandentalclinic@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
