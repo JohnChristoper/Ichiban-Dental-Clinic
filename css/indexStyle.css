@@ -1356,323 +1356,322 @@ body {
 @media (max-width: 400px) {
 
   /* ===== HERO ===== */
-  .background-container {
-    height: 100vw;
-  }
+    .background-container {
+        height: 100vw;
+    }
 
-  .hero-background,
-  .gradient-overlay,
-  .curved-border {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    .hero-background,
+    .gradient-overlay,
+    .curved-border {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-  .hero-content {
-    top: 10%;
-    left: 0;
-    width: 100%;
-    padding: 0 16px;
-    box-sizing: border-box;
-  }
+    .hero-content {
+        top: 10%;
+        left: 0;
+        width: 100%;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
 
-  .hero-content > h1 {
-    font-size: 1.8rem;
-    margin: 0 0 8px 0;
-    line-height: 1.2;
-  }
+    .hero-content > h1 {
+        font-size: 1.8rem;
+        margin: 0 0 8px 0;
+        line-height: 1.2;
+    }
 
-  .hero-content > p {
-    font-size: 0.85rem;
-    width: 55%;
-    margin: 0 0 8px 0;
-  }
+    .hero-content > p {
+        font-size: 0.85rem;
+        width: 55%;
+        margin: 0 0 8px 0;
+    }
 
-  .hero-content > a {
-    margin-top: 10px;
-    font-size: 0.85rem;
-    padding: 8px 16px;
-  }
+    .hero-content > a {
+        margin-top: 10px;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
 
-  /* ===== SERVICES ===== */
-  .services-main {
-    width: 100%;
-    padding: 0 16px;
-    box-sizing: border-box;
-    margin-bottom: 40px;
-    gap: 24px;
-  }
+    /* ===== SERVICES ===== */
+    .services-main {
+        width: 100%;
+        padding: 0 16px;
+        box-sizing: border-box;
+        margin-bottom: 40px;
+        gap: 24px;
+    }
 
-  .services-title {
-    font-size: 1.3rem;
-    margin: 0;
-  }
+    .services-title {
+        font-size: 1.3rem;
+        margin: 0;
+    }
 
-  .services-container {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: unset;
-    gap: 16px;
-  }
+    .services-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: unset;
+        gap: 16px;
+    }
 
-  .service-card {
-    height: 220px;
-  }
+    .service-card {
+        height: 220px;
+    }
 
-  .service-name {
-    font-size: 1rem;
-    top: 55%;
-    left: 12px;
-    width: 80%;
-  }
+    .service-name {
+        font-size: 1rem;
+        top: 55%;
+        left: 12px;
+        width: 80%;
+    }
 
-  .service-desc {
-    font-size: 0.7rem;
-    top: 76%;
-    left: 12px;
-    right: 8px;
-    width: auto;
-  }
+    .service-desc {
+        font-size: 0.7rem;
+        top: 76%;
+        left: 12px;
+        right: 8px;
+        width: auto;
+    }
 
-  .view-all-services {
-    font-size: 1.3rem;
-    gap: 10px;
-  }
+    .view-all-services {
+        font-size: 1.3rem;
+        gap: 10px;
+    }
 
-  .arrow {
-    font-size: 1.3rem;
-  }
+    .arrow {
+        font-size: 1.3rem;
+    }
 
-  /* ===== WHY CHOOSE US ===== */
-  .why-section {
-    padding: 40px 0;
-  }
+    /* ===== WHY CHOOSE US ===== */
+    .why-section {
+        padding: 40px 0;
+    }
 
-  .why-container {
-    flex-direction: column;
-    gap: 28px;
-    width: 90%;
-  }
+    .why-container {
+        flex-direction: column;
+        gap: 28px;
+        width: 90%;
+    }
 
-  .why-choose-us-left {
-    display: none; /* hide image collage on mobile to save space */
-  }
+    .why-choose-us-left {
+        display: none; /* hide image collage on mobile to save space */
+    }
 
-  .why-choose-us-right {
-    width: 100%;
-  }
+    .why-choose-us-right {
+        width: 100%;
+    }
 
-  .why-heading {
-    font-size: 1.8rem;
-  }
+    .why-heading {
+        font-size: 1.8rem;
+    }
 
-  .feature-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 
-  .book-appointment {
-    padding: 12px 20px;
-    font-size: 0.9rem;
-  }
+    .book-appointment {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
 
-  /* ===== TESTIMONIALS ===== */
-  .testimonials-section {
-    padding: 40px 0;
-  }
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section {
+        padding: 40px 0;
+    }
 
-  .section-title {
-    font-size: 1.5rem;
-    padding: 0 16px;
-  }
+    .section-title {
+        font-size: 1.5rem;
+        padding: 0 16px;
+    }
 
-  .section-subtitle {
-    font-size: 0.9rem;
-    padding: 0 16px;
-  }
+    .section-subtitle {
+        font-size: 0.9rem;
+        padding: 0 16px;
+    }
 
-  .testimonial-card {
-    width: 160px;
-    min-height: 200px;
-    padding: 16px;
-  }
+    .testimonial-card {
+        width: 160px;
+        min-height: 200px;
+        padding: 16px;
+    }
 
-  .testimonial-text {
-    font-size: 11px;
-  }
+    .testimonial-text {
+        font-size: 11px;
+    }
 
-  /* ===== BEFORE & AFTER ===== */
-  .before-after-section {
-    padding: 40px 0;
-  }
+    /* ===== BEFORE & AFTER ===== */
+    .before-after-section {
+        padding: 40px 0;
+    }
 
-  .before-after-container {
-    width: 92%;
-  }
+    .before-after-container {
+        width: 92%;
+    }
 
-  .before-after-title {
-    font-size: 1.8rem;
-  }
+    .before-after-title {
+        font-size: 1.8rem;
+    }
 
-  .before-after-subtitle {
-    font-size: 0.85rem;
-  }
+    .before-after-subtitle {
+        font-size: 0.85rem;
+    }
 
-  .before-after-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+    .before-after-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-  .slider-container {
-    height: 220px;
-  }
+    .slider-container {
+        height: 220px;
+    }
 
-  /* ===== EXPERTS ===== */
-  .experts-section {
-    padding: 40px 0;
-  }
+    /* ===== EXPERTS ===== */
+    .experts-section {
+        padding: 40px 0;
+    }
 
-  .experts-container {
-    flex-direction: column;
-    width: 92%;
-    gap: 24px;
-  }
+    .experts-container {
+        flex-direction: column;
+        width: 92%;
+        gap: 24px;
+    }
 
-  .experts-left-panel {
-    width: 100%;
-    position: relative;
-    top: 0;
-    padding-right: 0;
-  }
+    .experts-left-panel {
+        width: 100%;
+        position: relative;
+        top: 0;
+        padding-right: 0;
+    }
 
-  .experts-title {
-    font-size: 2rem;
-  }
+    .experts-title {
+        font-size: 2rem;
+    }
 
-  .experts-scroll-wrapper {
-    width: 100%;
-  }
+    .experts-scroll-wrapper {
+        width: 100%;
+    }
 
-  .expert-card {
-    flex: 0 0 200px;
-    height: 300px;
-  }
+    .expert-card {
+        flex: 0 0 200px;
+        height: 300px;
+    }
 
-  .prev-btn {
-    left: -16px;
-  }
+    .prev-btn {
+        left: -16px;
+    }
 
-  .next-btn {
-    right: 10px;
-  }
+    .next-btn {
+        right: 10px;
+    }
 
-  /* ===== CALL TO ACTION ===== */
-  .call-section {
-    background: 
-      linear-gradient(180deg, rgba(0,56,82,0.95) 0%, rgba(0,56,82,0.85) 100%),
-      url('../assets/images/Background2.png');
-    background-size: cover;
-  }
+    /* ===== CALL TO ACTION ===== */
+    .call-section {
+        background: 
+        linear-gradient(180deg, rgba(0,56,82,0.95) 0%, rgba(0,56,82,0.85) 100%),
+        url('../assets/images/Background2.png');
+        background-size: cover;
+    }
 
-  .call-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 40px 0;
-    width: 92%;
-  }
+    .call-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 40px 0;
+        width: 92%;
+    }
 
-  .call-title {
-    font-size: 2.2rem;
-  }
+    .call-title {
+        font-size: 2.2rem;
+    }
 
-  .call-subtitle {
-    font-size: 0.95rem;
-  }
+    .call-subtitle {
+        font-size: 0.95rem;
+    }
 
-  .call-text {
-    font-size: 0.95rem;
-  }
+    .call-text {
+        font-size: 0.95rem;
+    }
 
-  .call-right {
-    width: 100%;
-    flex-direction: column;
-    gap: 12px;
-  }
+    .call-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
 
   .services-btn,
   .appointment-btn {
     width: 100%;
     text-align: center;
-    padding: 13px 0;
-    font-size: 0.95rem;
-  }
-
-  /* ===== FIND US ===== */
-  .find-us-section {
-    padding: 40px 0;
-  }
-
-  .find-us-container {
-    width: 92%;
-    gap: 32px;
-  }
-
-  .find-us-title {
-    font-size: 1.6rem;
-  }
-
-  .find-us-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .find-us-grid {
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  .find-us-info-panel {
-    width: 100%;
-    gap: 24px;
-  }
-
-  .find-us-map-wrapper {
-    width: 100%;
-    height: 260px;
-    border-radius: 10px;
-  }
-
-  .find-us-btn {
-    width: 100%;
-    justify-content: center;
     padding: 13px 20px;
-    box-sizing: border-box;
-  }
-
-  .info-detail {
     font-size: 0.95rem;
   }
 
-  /* ===== FOOTER ===== */
-  footer {
-    flex-direction: column;
-    padding: 40px 24px 100px 24px;
-    gap: 32px;
-  }
+    /* ===== FIND US ===== */
+    .find-us-section {
+        padding: 40px 0;
+    }
 
-  .base-1, .base-2, .base-3, .base-4 {
-    flex: unset;
-    width: 100%;
-  }
+    .find-us-container {
+        width: 92%;
+        gap: 32px;
+    }
 
-  .foot-logo p {
-    font-size: 1.3rem;
-  }
+    .find-us-title {
+        font-size: 1.6rem;
+    }
 
-  .base-5 {
-    left: 24px;
-    bottom: 24px;
-  }
+    .find-us-subtitle {
+        font-size: 0.9rem;
+    }
 
+    .find-us-grid {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .find-us-info-panel {
+        width: 100%;
+        gap: 24px;
+    }
+
+    .find-us-map-wrapper {
+        width: 100%;
+        height: 260px;
+        border-radius: 10px;
+    }
+
+    .find-us-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+        box-sizing: border-box;
+    }
+
+    .info-detail {
+        font-size: 0.95rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        flex-direction: column;
+        padding: 40px 24px 100px 24px;
+        gap: 32px;
+    }
+
+    .base-1, .base-2, .base-3, .base-4 {
+        flex: unset;
+        width: 100%;
+    }
+
+    .foot-logo p {
+        font-size: 1.3rem;
+    }
+
+    .base-5 {
+        left: 24px;
+        bottom: 24px;
+    }
 }
 
 /* --- Fully Responsive Design System Back-Downs --- */
