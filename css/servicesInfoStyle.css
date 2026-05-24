@@ -203,3 +203,138 @@ body {
     font-family: 'Inter', sans-serif;
     text-align: center;
 }
+
+@media (max-width: 400px) {
+
+  /* ===== PAGE BODY ===== */
+  body {
+    margin-top: 20px;
+  }
+
+  /* ===== SERVICE TYPE CONTAINER ===== */
+  .service-type {
+    width: 92%;
+  }
+
+  .service-type button {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+  }
+
+  /* ===== SERVICE TITLE ===== */
+  .service-title {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+  }
+
+  /* ===== SERVICE INTRO ===== */
+  .service-intro h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .service-intro p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    text-indent: 0;
+  }
+
+  /* ===== PROCEDURE SECTION ===== */
+  .service-procedure {
+    flex-direction: column;
+    gap: 16px;
+    margin: 40px auto;
+  }
+
+  .service-procedure-image {
+    width: 100%;
+    height: 220px;
+  }
+
+  .service-procedure-content {
+    width: 100%;
+    padding: 20px 5px;
+    gap: 12px;
+    margin: 0 auto;
+  }
+
+  .service-procedure-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .service-procedure-content p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  /* ===== IMPORTANCE SECTION ===== */
+  .service-importance {
+    flex-direction: column;
+    gap: 16px;
+    margin: 40px auto;
+  }
+
+  /* Move image above the content box on mobile */
+  .service-importance-image {
+    width: 100%;
+    height: 220px;
+    order: -1;
+  }
+
+  .service-importance-content {
+    width: 100%;
+    padding: 20px 5px;
+  }
+
+  .service-importance-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .service-importance-content p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .service-importance-list {
+    padding-left: 24px;
+    font-size: 0.875rem;
+    line-height: 1.8;
+  }
+
+  /* ===== FREQUENCY SECTION ===== */
+  .service-frequency {
+    margin: 40px auto;
+    width: 92%;
+  }
+
+  .service-frequency h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .service-frequency p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  /* ===== CTA SECTIONS ===== */
+  .service-cta {
+    margin: 40px auto;
+    width: 92%;
+  }
+
+  .service-cta h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .service-cta p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+}
