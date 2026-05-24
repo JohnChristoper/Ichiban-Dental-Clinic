@@ -1,0 +1,964 @@
+:root {
+    --back-ground-color: #040B15;
+    --back-ground-color-2: #240001;
+    --primary: #420001;
+    --secondary: #640000;
+    --tertiary: #ffacab;
+    --quaternary: #ffb8b8;
+}
+
+html {   
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--back-ground-color-2);
+    background-image: url(../images/rose_thorns.png);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+/* HEADER */
+
+#site-header {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: linear-gradient(to right, 
+        rgba(4, 11, 21, 0.7),      
+        rgba(66, 0, 1, 0.7),       
+        rgba(4, 11, 21, 0.7)       
+    );
+    border-bottom: 1px solid var(--secondary);
+    backdrop-filter: blur(12px);          
+}
+
+#header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#header-rose {
+    width: 35px;
+}
+
+#header-logo a {
+    font-size: 1.75rem;
+    font-weight: 900;
+    font-family: 'Hillway';
+    text-decoration: none;
+    color: var(--tertiary);
+    letter-spacing: 0.15em;
+    transition: color 0.3s ease;
+}
+
+#header-logo a:hover {
+    color: #fff;
+    cursor: default;
+}
+
+#header-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#header-nav a {
+    font-family: 'ArcaneNine';
+    color: var(--tertiary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#header-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--tertiary);
+    transition: width 0.3s ease;
+}
+
+#header-nav a:hover {
+    color: #fff;
+}
+
+#header-nav a:hover::after {
+    width: 100%;
+}
+
+
+/*=================================*/
+
+#main-container-background {
+    width: 100%;
+    height: 100vh;
+    
+}
+
+#main-container {
+    width: 80%;
+    height: 90vh;
+    margin: 2rem auto;
+    display: flex;
+    
+}
+
+#center-container {
+    width: 100%;
+    height: 89%;
+    display: flex;
+    align-items: center;
+}
+
+#hero-rose {
+    width: 300px;
+}
+
+#center-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero-name {
+    font-size: 200px;
+    font-family: 'Hillway';
+    color: var(--tertiary);
+    transition: color 0.5s ease;
+}
+
+#center-content p:hover{
+    color: white;
+    cursor: default;
+}
+
+@media (max-width: 763px) {
+    #hero-rose {
+        width: 190px;
+    }
+
+    #hero-name {
+        font-size: 150px;
+    }
+}
+
+@media (max-width: 400px) {
+    #hero-rose {
+        width: 150px;
+    }
+
+    #hero-name {
+        font-size: 120px;
+    }
+}
+/*===========================================*/
+
+#design{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #240001;
+    cursor: default;
+}
+
+.design-1 {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.design-1-inner {
+    display: flex;
+    gap: 0;
+    will-change: transform;
+}
+
+#design p {
+    font-size: clamp(8rem, 9rem, 9.5rem);
+    font-family: 'Hillway';
+}
+
+.big-letter{
+    color: var(--secondary);
+}
+
+.small-letter {
+    color: var(--tertiary);
+}
+
+@media (max-width: 763px) {
+    #design p {
+        font-size: clamp(5.85rem, 6rem, 6.5rem);
+    }
+}
+
+@media (max-width: 400px) {
+    #design p {
+        font-size: clamp(4rem, 3rem, 5.25rem);
+    }
+}
+
+/*===========================================*/
+
+#about-me-container {
+    width: 90%;
+    min-height: 40vh;          
+    margin: clamp(40px, 8vw, 100px) auto;
+    background: linear-gradient(to right, transparent, var(--secondary), transparent);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;          
+    flex-wrap: wrap;   
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+#my-image-container {
+    width: clamp(200px, 40%, 500px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#my-image-container img {
+    width: 100%;               
+    height: auto;              
+    max-width: 300px;
+    border-radius: 8px;        
+}
+
+#about-container {
+    width: clamp(200px, 40%, 600px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#description p {
+    font-family: 'Modista';
+    color: var(--tertiary);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    line-height: 1.7;
+    cursor: default;
+}
+
+#title p{
+    color: var(--tertiary);
+    font-size: clamp(2.75rem, 3.5rem, 3rem);
+    cursor: default;
+}
+
+/*==================================*/
+
+/*MY WORKS CONTAINER*/
+#my-works-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto;
+}
+
+/**/
+.my-works-title {
+    text-align: center;
+    color: var(--tertiary);
+    font-size: 80px;
+    padding: 0 50px;
+    margin-bottom: 20px;
+    border-bottom: 2px var(--tertiary) solid;
+
+}
+
+/**/
+#my-works-content-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/*title-font*/
+.works {
+    width: 25%;
+    height: 500px;
+    background: linear-gradient(to bottom, var(--primary) 40%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: background-color 0.5s ease;
+}
+
+.works:hover {
+    background-color: var(--secondary);
+}
+
+/**/
+.works-img {
+    width: 80%;
+    height: 30%;
+}
+
+/**/
+.works-image  {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.works-description {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-works-description-title {
+    color: white;
+    font-family: 'ArcaneNine';
+    opacity: 85%;
+    font-size: clamp(0.5rem, 1.15rem, 2.25rem);
+    cursor: default;
+}
+
+.my-works-description {
+    font-family: 'Modista';
+    color: var(--tertiary);
+    opacity: 80%;
+    font-size: clamp(.80rem, 0.90rem, 1rem);
+    cursor: default;
+}
+
+@media(max-width: 763px) {
+    #my-works-container {
+        width: 90%;
+    }
+    .works {
+        width: 30%;
+        height: 600px;
+    }
+
+    .works-img {
+        width: 85%;
+        height: 25%;
+    }
+}
+
+@media(max-width: 400px) {
+    #my-works-content-container {
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .works {
+        width: 80%;
+    }
+
+    .my-works-description-title {
+        font-size: clamp(1rem, 1.30rem, 2rem);
+    }
+
+    .my-works-description {
+        font-size: clamp(.90rem, 1rem, 1.25rem);
+    }
+}
+/*============= ABOUT ME PAGE =============*/
+#about-me-page-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 50px;
+    gap: 20px;
+}
+
+#about-me-profile {
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(100, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+}
+
+#about-me-picture img{
+    width: 150px;
+    height: auto;
+    border-top-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+}
+
+#about-me-name p {
+    color: white;
+    font-size: 4rem;
+    font-family: 'ArcaneNine';
+}
+
+#about-me-introduction-container {
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#about-me-introduction {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background-color: rgba(100, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+#my-introduction {
+    width: 94%;
+    margin: 20px auto;
+}
+
+#my-introduction-title {
+    font-family: 'ArcaneNine';
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border-bottom: 1px var(--primary) solid;
+    border-top: 1px var(--primary) solid;
+}
+
+#my-introduction-details {
+    font-family: 'Modista';
+}
+
+#my-introduction p {
+    color: var(--quaternary);
+}
+
+#education {
+    width: 94%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+#education p {
+    color: var(--quaternary);
+}
+
+#education-title {
+    font-size: 1.5rem;
+    font-family: 'ArcaneNine';
+    padding: 5px 10px;
+    border-bottom: 1px var(--primary) solid;
+    border-top: 1px var(--primary) solid;
+    margin: 5px;
+}
+
+.education-level {
+    font-size: 0.90;
+    font-family: 'Modista';
+}
+
+.school {
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: 'Modista';
+}
+
+.year {
+    opacity: 70%;
+    font-family: 'Modista';
+    font-size: 0.80rem;
+}
+
+
+
+#stacks-container {
+    width: 48%;
+    background-color: rgba(100, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 10px;
+}
+
+#stacks-container p{
+    color: var(--quaternary);
+    font-family: 'ArcaneNine';
+}
+
+#stacks-title {
+    text-align: center;
+    margin: 10px;
+}
+
+#stacks-title p {
+    font-size: 1.5rem;
+}
+
+#stacks-items-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.stack {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.stack-title {
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border-bottom: 1px var(--primary) solid;
+    border-top: 1px var(--primary) solid;
+}
+
+.stack-item img {
+    width: 40px;
+    height: 40px;
+}
+
+.stack-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stack-item p {
+    font-size: 0.8rem;
+    color: var(--quaternary);
+}
+
+
+@media (min-width: 400px) and (max-width: 767px){
+    #about-me-page-container {
+        width: 95%;
+        padding: 25px;
+        gap: 20px;
+    }
+
+    #about-me-introduction-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #about-me-introduction {
+        width: 95%;
+    }
+
+    #stacks-container {
+        width: 95%;
+    }
+
+    #about-me-name p {
+        font-size: 2rem;
+    }
+
+    #about-me-profile {
+        gap: 50px;
+        padding: 3px;
+    }
+
+    #about-me-picture img{
+        width: 100px;
+        height: auto;
+        border-radius: 50%;
+    }
+}
+
+/*============= MY WORKS PAGE =============*/
+#works-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+}
+
+.works-page {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#works-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.works-page-content {
+    width: 30%;
+    border-radius: 18px;
+    padding: 10px;
+    background-color: rgba(100, 0, 0, 0.5);
+    display: flex;
+    gap: 10px;
+}
+
+.works-page-content-2 {
+    width: 40%;
+    gap: 5px;
+}
+
+.works-page-image {
+    border-radius: 10px;
+    width: 133px;
+    height: 200px;
+}
+
+.works-page-description-title {
+    font-family: 'ArcaneNine';
+    color: white;
+    opacity: 80%;
+    font-size: clamp(0.85rem, 2rem , 3rem);
+    overflow-wrap: break-word;
+    background-color: rgba(255, 172, 171, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+    cursor: default;
+}
+
+.works-page-description-text {
+    cursor: default;
+    color: var(--tertiary);
+    opacity: 70%;
+    font-family: 'Modista';
+}
+
+@media (max-width: 763px) {
+    .title-font {
+        font-size: 4rem;
+        margin: 20px;
+    } 
+
+    .works-page {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .works-page-content {
+        width: 70%;
+    }
+}
+
+@media (max-width: 400px) {
+    .title-font {
+        font-size: 3rem;
+        margin: 20px;
+    } 
+
+    .works-page {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .works-page-content {
+        width: 70%;
+    }
+
+    .works-page-description-title {
+        font-size: clamp(0.85rem, 1.5rem , 2rem);
+    }
+
+    .works-page-content {
+        width: 80%;
+    }
+
+    .works-page-description-text {
+        font-size: 0.90rem;
+    }
+}
+
+/*============CONTACTS PAGE===================*/
+
+#contacts-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#logo-container {
+    width: 90%;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0 auto;
+}
+
+.contact-details {
+    width: 20%;
+    display: flex;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    overflow-wrap: break-word;
+    background: rgba(66, 0, 1, 0.3);
+    border: 1px solid var(--secondary);
+    border-radius: 12px;
+    padding: 24px 16px;
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.contact-details:hover {
+    background: rgba(66, 0, 1, 0.55);
+    transform: translateY(-4px);
+}
+
+#contacts-title {
+    font-size: 3rem;
+    color: var(--tertiary);
+    padding: 30px;
+    font-family: 'ArcaneNine';
+}
+
+.contact-details a {
+    color: #ffffff;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-family: 'Modista';
+    text-shadow: 0 0 8px rgba(255, 172, 171, 0.4);
+    transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: var(--quaternary);
+}
+
+.contact-details p {
+    color: #ffffff;
+    margin-top: 20px;
+    font-family: 'Modista';
+    text-shadow: 0 0 8px rgba(255, 172, 171, 0.4);
+}
+
+.contact-details img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+}
+
+@media (max-width: 763px) {
+    #logo-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contact-details {
+        width: 70%;
+        word-break: break-word;
+    }
+
+    .contact-details a {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-details {
+        width: 85%;
+    }
+
+    .contact-details img {
+        width: 100px;
+    }
+
+    .contact-details a {
+        font-size: 0.80rem;
+        text-align: center;
+    }
+
+    .contact-details p {
+        color: #ffffff;
+        margin-top: 20px;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*============= FOOTER ==============*/
+
+/* FOOTER */
+#site-footer {
+    width: 100%;
+    margin-top: 100px;
+    background: linear-gradient(to right,
+        rgba(4, 11, 21, 0.9),
+        rgba(66, 0, 1, 0.9),
+        rgba(4, 11, 21, 0.9)
+    );
+    border-top: 1px solid var(--secondary);
+    backdrop-filter: blur(12px);
+}
+
+#footer-inner {
+    width: 80%;
+    margin: 0 auto;
+    padding: 3rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#footer-rose {
+    width: 50px;
+}
+
+#footer-logo a {
+    font-family: 'Hillway';
+    font-size: 3rem;
+    text-decoration: none;
+    color: var(--tertiary);
+    transition: color 0.3s ease;
+}
+
+#footer-logo a:hover {
+    color: #fff;
+}
+
+#footer-links{
+    display: flex;
+    gap: 2rem;
+}
+
+#footer-links a {
+    font-family: 'ArcaneNine';
+    color: var(--tertiary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#footer-links a::after{
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--tertiary);
+    transition: width 0.3s ease;
+}
+
+#footer-links a:hover{
+    color: #fff;
+}
+
+#footer-links a:hover::after{
+    width: 100%;
+}
+
+#footer-copy {
+    color: var(--secondary);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+    border-top: 1px solid var(--secondary);
+    width: 100%;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.title-font {
+    font-family: 'ArcaneNine';
+}
+
+@font-face {
+    font-family: 'Sloop';
+    src: url(../fonts/Sloop-ScriptThree.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hillway';
+    src: url(../fonts/Hillway.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ArcaneNine';
+    src: url(../fonts/ArcaneNine-eZP1x.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Modista';
+    src: url(../fonts/Modista-9ME6y.otf);
+    font-weight: 400;
+    font-style: normal;
+}

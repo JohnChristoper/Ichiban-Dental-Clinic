@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adri</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header id="site-header">
+    <div id="header-logo">
+        <img src="./images/rose.png" alt="rose" id="header-rose">
+        <a href="index.html">Adri</a>
+    </div>
+    <nav id="header-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="works.html">Projects</a>
+        <a href="contacts.html">Contact</a>
+    </nav>
+</header>
+
+    <div id="contacts-container">
+        <div class="title-font my-works-title reveal">
+            <p>CONTACTS</p>
+        </div>
+
+        <div id="logo-container">
+            <div class="contact-details reveal" style="transition-delay: 0.1s;">
+                <a href="https://www.facebook.com/adrian.lobos.2025" target="_blank" rel="noopener noreferrer"><img src="./images/facebook_icon.jfif" alt=""></a>
+                <a href="https://www.facebook.com/adrian.lobos.2025" target="_blank" rel="noopener noreferrer">adrian.lobos.2025</a>
+            </div>
+            <div class="contact-details reveal" style="transition-delay: 0.2s;">
+                <a href="mailto:adrianlobos1328@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <img src="./images/gmail_icon.jfif" alt="">
+                </a>
+                <a href="mailto:adrianlobos1328@gmail.com" target="_blank" rel="noopener noreferrer"><p>adrianlobos1328@gmail.com</p></a>
+            </div>
+            <div class="contact-details reveal" style="transition-delay: 0.1s;">
+                <a href="https://www.instagram.com/ad_rii19/" target="_blank" rel="noopener noreferrer"><img src="./images/Instagram_icon.png.webp" alt=""></a>
+                <a href="https://www.instagram.com/ad_rii19/" target="_blank" rel="noopener noreferrer">adrian.lobos.2025</a>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div id="footer-inner">
+            <div id="footer-logo" class="reveal">
+                <img src="./images/rose.png" alt="rose" id="footer-rose">
+                <a href="index.html">Adri</a>
+            </div>
+            <div id="footer-links" class="reveal" style="transition-delay: 0.1s;">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="works.html">Projects</a>
+                <a href="contacts.html">Contact</a>
+            </div>
+            <p id="footer-copy" class="reveal" style="transition-delay: 0.2s;">&copy; 2026 Adri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
