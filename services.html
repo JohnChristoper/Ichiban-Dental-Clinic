@@ -28,6 +28,13 @@
                     <img class="profile" src="assets/images/GuestProfile.svg" alt="Guest Profile">
                 </div>
             </div>
+
+            <!-- Hamburger button (mobile only) -->
+            <button class="hamburger-btn" onclick="openFullscreenMenu()" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </header>
 
         <div class="fullscreen-menu-overlay" id="fullscreenMenu" onclick="closeFullscreenMenu()">
