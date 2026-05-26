@@ -42,7 +42,6 @@
     font-size: 1rem;
     color: var(--venice-blue);
     margin-bottom: 5px;
-    
 }
 
 .hero-title {
@@ -91,7 +90,6 @@
 
 .hero-btn-secondary:hover {
     color: var(--turquoise-blue);
-    
 }
 
 .hero-img-container {
@@ -107,12 +105,65 @@
     border-radius: 10px;
 }
 
+/* ===== MEDIA PRESENTATIONS ===== */
+.media-presentations {
+    width: 100%;
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.media-container {
+    width: 80%;
+    margin: 0 auto;
+}
 
+.media-title {
+    text-align: center;
+    font-size: 3.8rem;
+    color: var(--venice-blue);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+}
 
+.media-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
 
+.media-card {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
+.media-card h3 {
+    font-size: 1.8rem;
+    color: var(--venice-blue);
+    font-family: 'Quicksand', serif;
+}
 
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    border: var(--bondi-blue) 1px solid;
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== OUR TEAM ===== */
 .our-team {
     width: 100%;
     margin: 50px 0;
@@ -175,7 +226,6 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    
 }
 
 .dentist-description h1 {
@@ -194,9 +244,7 @@
     font-family: 'Inter', serif;
 }
 
-
-
-
+/* ===== OUR CLINIC ===== */
 .our-clinic {
     width: 100%;
     margin: 0 auto 50px auto;
@@ -269,6 +317,34 @@
     border-radius: 10px;
   }
 
+  /* ===== RESPONSIVE PRESENTATIONS ===== */
+  .media-presentations {
+    margin: 30px 0;
+  }
+  
+  .media-container {
+    width: 92%;
+  }
+
+  .media-title {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .media-grid {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .media-card {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .media-card h3 {
+    font-size: 1.4rem;
+  }
+
   /* ===== OUR TEAM ===== */
   .our-team {
     margin: 30px 0;
@@ -287,13 +363,11 @@
     gap: 40px;
   }
 
-  /* Stack image on top, description below for every card */
   .dentist-card {
     flex-direction: column;
     gap: 0;
   }
 
-  /* Force the second card (description-first) to reorder on mobile */
   .dentist-card:nth-child(2) {
     flex-direction: column;
   }
@@ -351,5 +425,4 @@
     height: 200px;
     object-fit: cover;
   }
-
 }

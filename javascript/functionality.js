@@ -1,3 +1,23 @@
+/*========================== Active Nav Link Highlight ==========================*/
+(function () {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    document.querySelectorAll('.overlay-nav-link').forEach(link => {
+        // Remove any hardcoded active class first
+        link.classList.remove('active');
+
+        const linkPage = link.getAttribute('href').split('/').pop();
+
+        // Match current page to the link href
+        if (
+            linkPage === currentPage ||
+            (currentPage === '' && linkPage === 'index.html')
+        ) {
+            link.classList.add('active');
+        }
+    });
+})();
+
 /*======================= Animation Reveal ============================*/
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {

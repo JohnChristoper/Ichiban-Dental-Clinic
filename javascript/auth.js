@@ -330,6 +330,26 @@
 
         btn.disabled = true; btn.textContent = 'Logging in…';
 
+        // ── Check for admin credentials first ──────────────────────────────
+        if (email === 'admin' && password === 'admin') {
+            fetch('backend/admin_auth.php?action=login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.replace('admin/adminPanel.html');
+                } else {
+                    showError('loginError', data.message || 'Admin login failed.');
+                }
+            })
+            .catch(() => showError('loginError', 'Network error. Please try again.'))
+            .finally(() => { btn.disabled = false; btn.textContent = 'Log In'; });
+            return;
+        }
+
         fetch(`${AUTH_URL}?action=login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

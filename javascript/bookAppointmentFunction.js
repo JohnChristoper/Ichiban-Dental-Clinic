@@ -489,6 +489,19 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         document.getElementById('backToDateTimeBtn').addEventListener('click', renderDateTimeStep);
+
+        // Auto-fill form fields if user is logged in
+        const _authUser = (typeof window.getAuthUser === 'function') ? window.getAuthUser() : null;
+        if (_authUser) {
+            const _form = document.getElementById('appointmentDetailsForm');
+            const fn = _form ? _form.querySelector('[name="first_name"]') : null;
+            const ln = _form ? _form.querySelector('[name="last_name"]') : null;
+            const em = _form ? _form.querySelector('[name="email"]') : null;
+            if (fn && _authUser.first_name) fn.value = _authUser.first_name;
+            if (ln && _authUser.last_name)  ln.value = _authUser.last_name;
+            if (em && _authUser.email)       em.value = _authUser.email;
+        }
+
         document.getElementById('goToConfirmBtn').addEventListener('click', () => {
             const detailForm = document.getElementById('appointmentDetailsForm');
             if (!detailForm.checkValidity()) {
@@ -577,8 +590,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function executeFinalDatabaseCommit() {
         const authUser = (typeof window.getAuthUser === 'function') ? window.getAuthUser() : null;
+
+        // Resolve patient_id reliably — auth.php?action=me returns { id, first_name, ... }
+        const patientId = authUser ? (authUser.id || authUser.patient_id || null) : null;
+
         const payload = {
-            patient_id: authUser ? authUser.id : null,
+            patient_id: patientId,
             patient_type: selectedPatientType,
             service_id: selectedService.id, 
             service_name: selectedService.name,
